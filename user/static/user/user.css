@@ -1,4 +1,96 @@
-#registration-form{
-
-    box-shadow: 20px 20px 50px 10px rgb(231, 177, 90);
+@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto+Mono&display=swap');
+.registration-form {
+  background: white;
 }
+.form-control:focus {
+  border-color: #ff0000;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+#testimonial {
+  margin-top: 3rem;
+}
+.register-text {
+  color: white;
+  font-weight: bolder;
+}
+/* navbar styles */
+.navbar {
+  background-color:rgb(159, 105, 230)!important;
+}
+#register-btn a{
+    display: block;
+    color: white;
+    text-transform: capitalize;
+    font-weight: bold;
+    transition: 0.1s all ease;
+}
+#register-btn a:hover{
+    color: aqua;
+    cursor: default;
+}
+.slider_bg_1 {
+  background-image: url("./images/banner.png");
+}
+.slider_area .single_slider {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.slider_area .single_slider .illastrator_png img {
+  width: 35rem;
+}
+.slider_area .single_slider .slider_info h3 {
+    color: #ffffff;
+    font-size: 60px;
+    text-transform: capitalize;
+    font-weight: bolder;
+    line-height: 70px;
+    margin-bottom: 50px;
+    margin-top: 10px;
+  }
+.event-create{
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+    margin-left: 10rem;
+    width: 12em;
+    height: 4em;
+    padding-top: 1.2em
+}
+
+
+
+@media (max-width: 1200px) {
+    /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_slider.scss */
+    .slider_area .single_slider .slider_info {
+      text-align: center;
+    }
+    .slider_area .single_slider .slider_info h3 {
+        font-size: 2rem;
+        margin-left: 1em;
+      }
+      .slider_area .single_slider .illastrator_png img {
+        width: 27rem;
+      }
+    .event-create{
+        margin-left: 0rem
+    }
+  }
+  @media (max-width: 900px) {
+    /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_slider.scss */
+    .slider_area .single_slider .slider_info {
+      text-align: center;
+    }
+    .slider_area .single_slider .slider_info h3 {
+        font-size: 1.7rem;
+      }
+      .slider_area .single_slider .illastrator_png img {
+        width: 25rem;
+      }
+    .event-create{
+        margin-left: 0rem
+    }
+  }
