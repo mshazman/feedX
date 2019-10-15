@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>FeedX</title>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form class="text-center border border-light p-5" method="post">
+                    {% csrf_token %}
+                    <p class="h4 mb-4">Sign in</p>
+                    {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+                    <!-- Email -->
+                    {{ form.username }}
+                    {#    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">#}
+
+                    <!-- Password -->
+                    {#    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">#}
+                    {{ form.password }}
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <!-- Remember me -->
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Forgot password -->
+                            <a href="">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Sign in button -->
+                    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+                    <!-- Register -->
+                    <p>Not a member?
+                        <a href="">Register</a>
+                    </p>
+
+                    <!-- Social login -->
+                    <p>or sign in with:</p>
+
+                    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+                    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+                    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+                    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
