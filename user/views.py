@@ -23,4 +23,4 @@ class UserLogoutView(LogoutView):
 
 
 def dashboard(request):
-    return render(request, 'user/temp.html')
+    return render(request, 'user/dashboard.html')
