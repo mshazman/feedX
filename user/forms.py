@@ -4,16 +4,17 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(label='Email')
+    # email = forms.EmailField(label='Email')
     name = forms.CharField(max_length=20,label='Full-Name')
 
     class Meta:
         model = User
-        fields = ['name','email','password1','password2']
+        fields = ['username','name','email','password1','password2']
 
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class':'form-control','placeholder':'Username'})
         self.fields['name'].widget.attrs.update({'class':'form-control','placeholder':'Full name'})
         self.fields['email'].widget.attrs.update({'class':'form-control','placeholder':'Email'})
         self.fields['password1'].widget.attrs.update({'class':'form-control','placeholder':'Password'})
