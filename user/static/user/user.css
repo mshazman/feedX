@@ -1,4 +1,125 @@
-#registration-form{
-
-    box-shadow: 20px 20px 50px 10px rgb(231, 177, 90);
+.registration-form {
+ background: white;
+}
+.form-control:focus {
+ border-color: #ff0000;
+ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+#testimonial {
+ margin-top: 3rem;
+}
+.register-text {
+ color: white;
+ font-weight: bolder;
+}
+/* navbar styles */
+.navbar-nav a {
+ font-family: "Kalam", cursive;
+ text-transform: capitalize;
+ font-size: 20px;
+ font-weight: bold;
+}
+.navbar-light .navbar-brand {
+ color: #fff;
+ text-transform: uppercase;
+ font-weight: bold;
+ font-family: "Righteous", cursive;
+ letter-spacing: 2px;
+}
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link {
+ color: #fff;
+}
+.navbar-light .navbar-nav .nav-link {
+ color: #fff;
+}
+.navbar-nav {
+ text-align: center;
+}
+.nav-link {
+ padding: 0.2rem 1rem;
+}
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+ color: cyan !important;
+}
+.navbar {
+ background-color: rgb(159, 105, 230) !important;
+}
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
+ color: #fff;
+}
+/* homepage styles */
+.slider_bg_1 {
+ background-image: url("./images/banner.png");
+}
+.slider_area .single_slider {
+ height: 100vh;
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: center;
+}
+.slider_area .single_slider .illastrator_png img {
+ width: 35rem;
+}
+.slider_area .single_slider .slider_info h3 {
+ color: #ffffff;
+ font-size: 60px;
+ text-transform: capitalize;
+ font-weight: bolder;
+ line-height: 70px;
+ margin-bottom: 50px;
+ margin-top: 10px;
+}
+.event-create {
+ border-radius: 2em;
+ box-sizing: border-box;
+ text-decoration: none;
+ font-weight: bold;
+ font-family: "Roboto Mono", monospace;
+ margin-left: 10rem;
+ width: 12em;
+ height: 4em;
+ padding-top: 1.2em;
+}
+@media (max-width: 1200px) {
+ /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_slider.scss */
+ .slider_area .single_slider .slider_info {
+   text-align: center;
+ }
+ .slider_area .single_slider .slider_info h3 {
+   font-size: 2rem;
+   margin-left: 1em;
+ }
+ .slider_area .single_slider .illastrator_png img {
+   width: 27rem;
+ }
+ .event-create {
+   margin-left: 0rem;
+ }
+}
+@media (max-width: 900px) {
+ /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_slider.scss */
+ .slider_area .single_slider .slider_info {
+   text-align: center;
+ }
+ .slider_area .single_slider .slider_info h3 {
+   font-size: 1.7rem;
+ }
+ .slider_area .single_slider .illastrator_png img {
+   width: 25rem;
+ }
+ .event-create {
+   margin-left: 0rem;
+ }
+}
+@media only screen and (max-width: 1200px) {
+ .navbar-toggler {
+   padding: 1px 5px;
+   line-height: 0.3;
+   background: #6f42c1;
+ }
 }
