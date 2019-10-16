@@ -71,7 +71,7 @@
 
 /* homepage styles */
 .slider_bg_1 {
-    background-image: url("./images/banner.png");
+    background-image: url("../../static/user/images/banner.png");
 }
 
 .slider_area .single_slider {

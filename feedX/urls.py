@@ -15,13 +15,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from user import views as user_views
-
 urlpatterns = [
-    path('quiz', include('quiz.urls')),
+    path('',user_views.index,name='home'),
+    path('quiz/', include('quiz.urls')),
     path('user/',include('user.urls')),
     path('admin/', admin.site.urls),
-    path('register/', user_views.UserRegisterView.as_view(), name='register'),
-    path('login/', user_views.UserLoginView.as_view(), name='login'),
-    path('logout/', user_views.UserLogoutView.as_view(), name='logout'),
-    path('dashboard/', user_views.dashboard, name='dashboard')
+
 ]

@@ -1,81 +1,81 @@
 {% extends 'base.html' %}
 {% block style %}
-    <link href="../static/user/dashboard.css" rel="stylesheet">
+<link href="../../static/user/dashboard.css" rel="stylesheet">
 {% endblock %}
 {% block content %}
-    <div class="page-wrapper chiller-theme toggled">
-        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-            <i class="fas fa-bars"></i>
-        </a>
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <div class="sidebar-brand">
-                    <a href="#">Dashboard</a>
-                    <div id="close-sidebar">
-                        <i class="fas fa-times"></i>
-                    </div>
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div class="sidebar-brand">
+                <a href="#">Dashboard</a>
+                <div id="close-sidebar">
+                    <i class="fas fa-times"></i>
                 </div>
-                <div class="sidebar-header">
-                    <div class="user-pic">
-                        <img class="img-responsive img-rounded"
-                             src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-                             alt="User picture">
-                    </div>
-                    <div class="user-info">
+            </div>
+            <div class="sidebar-header">
+                <div class="user-pic">
+                    <img class="img-responsive img-rounded"
+                        src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                        alt="User picture">
+                </div>
+                <div class="user-info">
                     <span class="user-name">Shubham Pandey
-          </span>
-                        <span class="user-role">Quiz Creator</span>
-                    </div>
-                </div>
-                <!-- sidebar-header  -->
-                <div class="sidebar-menu">
-                    <ul>
-                        <li class="header-menu">
-                            <span>General</span>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-tachometer-alt"></i>
-                                <span>Create Quiz</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Results</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="far fa-gem"></i>
-                                <span>Quiz History</span>
-                            </a>
-                        </li>
-                    </ul>
+                    </span>
+                    <span class="user-role">Quiz Creator</span>
                 </div>
             </div>
-            <!-- sidebar-content  -->
-            <div class="sidebar-footer">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-warning notification">3</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-power-off"></i>
-                </a>
+            <!-- sidebar-header  -->
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="header-menu">
+                        <span>General</span>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fa fa-tachometer-alt"></i>
+                            <span>Create Quiz</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Results</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="far fa-gem"></i>
+                            <span>Quiz History</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
-            {% block dashboard %}
-            {% endblock %}
+        </div>
+        <!-- sidebar-content  -->
+        <div class="sidebar-footer">
+            <a href="#">
+                <i class="fa fa-bell"></i>
+                <span
+                    class="badge badge-pill badge-warning notification">3</span>
+            </a>
+            <a href="{% url 'logout' %}">
+                <i class="fa fa-power-off"></i>
+            </a>
+        </div>
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        {% block dashboard %}
+        {% endblock %}
 
-        </main>
-        <!-- page-content" -->
-    </div>
+    </main>
+    <!-- page-content" -->
+</div>
 {% endblock %}
 
 {% block scripts %}
-    <script src="../static/user/dashboard.js" type="text/javascript"></script>
+<script src="../../static/user/dashboard.js" type="text/javascript"></script>
 {% endblock %}
-
