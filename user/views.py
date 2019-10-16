@@ -5,6 +5,8 @@ from django.views.generic import CreateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 
+def index(request):
+    return render(request,'index.html')
 
 class UserRegisterView(SuccessMessageMixin, CreateView):
     form_class = UserRegistrationForm
