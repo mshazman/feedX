@@ -34,5 +34,5 @@ class UserLoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class':"form-control mb-4", 'placeholder':"Username"})
-        self.fields['password'].widget.attrs.update({'class':"form-control mb-4", 'placeholder':"Password"})
+        self.fields['username'].widget.attrs.update({'class':"form-control", 'placeholder':'Username', 'id':'inputEmail'})
+        self.fields['password'].widget.attrs.update({'class':"form-control", 'placeholder':"Password", 'id':'inputPassword'})

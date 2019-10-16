@@ -67,22 +67,8 @@
         </nav>
         <!-- sidebar-wrapper  -->
         <main class="page-content">
-            <div class="container-fluid">
-                <h2>Dashboard</h2>
-                <hr>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                    </div>
-                </div>
-                <h5>Content</h5>
-                <hr>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    </div>
-                </div>
-            </div>
+            {% block dashboard %}
+            {% endblock %}
 
         </main>
         <!-- page-content" -->
