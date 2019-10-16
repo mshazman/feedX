@@ -1,5 +1,4 @@
 """feedX URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
@@ -18,7 +17,10 @@ from django.urls import path,include
 from user import views as user_views
 
 urlpatterns = [
+    path('',include('user.urls')),
     path('admin/', admin.site.urls),
-    path('register/',user_views.register),
-    path('dashboard/',user_views.dashboard)
+    path('register/',user_views.UserRegisterView.as_view(), name='register'),
+    path('login/', user_views.UserLoginView.as_view(), name='login'),
+    path('logout/', user_views.UserLogoutView.as_view(), name='logout'),
+    path('dashboard/',user_views.dashboard, name='dashboard')
 ]

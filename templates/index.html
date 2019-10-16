@@ -1,0 +1,27 @@
+{% extends 'navbar.html' %}
+{%block app%}
+<div class="slider_area">
+    <div
+        class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
+        <div class="container ">
+            <div class="row">
+                <div class="col-xl-6 col-md-6">
+                    <div class="illastrator_png">
+                        <img src="./static/user/images/edu_ilastration.png"
+                            alt="">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 mt-5">
+                    <div class="slider_info">
+                        <h3>Make A Quiz To Generate Leads
+                            For Your Business</h3>
+                        <a class="btn btn-outline btn-primary event-create"
+                            href="{% url 'register' %}">Create a event</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

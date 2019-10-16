@@ -1,23 +1,28 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm
-# Create your views here.
+from django.shortcuts import render
+from .forms import UserRegistrationForm, UserLoginForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import CreateView
+from django.urls import reverse, reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
+
+def index(request):
+    return render(request,'index.html')
+
+class UserRegisterView(SuccessMessageMixin, CreateView):
+    form_class = UserRegistrationForm
+    template_name = 'user/register.html'
+    success_url = reverse_lazy('login')
+    success_message = "Account created. Now you can login!!"
+
+class UserLoginView(LoginView):
+    template_name = 'user/login.html'
+    authentication_form = UserLoginForm
+    redirect_authenticated_user = True
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request,f'Account created. Now you can login!!')
-            print("form is validated")
-            return redirect('login')
-    else:
-        form = UserRegistrationForm()
-        print("form is not validated!!")
-    return render(request,'user/register.html',{'form':form})
+class UserLogoutView(LogoutView):
+    next_page = '/'
+
 
 def dashboard(request):
     return render(request, 'user/dashboard.html')
-
