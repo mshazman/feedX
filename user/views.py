@@ -18,3 +18,6 @@ def register(request):
         print("form is not validated!!")
     return render(request,'user/register.html',{'form':form})
 
+def dashboard(request):
+    return render(request, 'user/dashboard.html')
+
