@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% load static %}
 {% block style %}
-<link rel="stylesheet" href="../../static/user/login.css">
+<link rel="stylesheet" href="{% static 'user/login.css' %}">
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
@@ -36,10 +36,9 @@
                                     type="submit">
                                     Sign in
                                 </button>
-                                <div class="border-top text-center">
-                                    <small class="text-muted">Need an accout??
-                                        <a class=" btn btn-primary-sm"
-                                            href="{% url 'register' %}"
+                                <div class="border-top text-center mt-3">
+                                    <small class="text-muted">Need an account??
+                                        <a href="{% url 'register' %}"
                                             role="button">Sign Up</a>
                                     </small>
                                 </div>

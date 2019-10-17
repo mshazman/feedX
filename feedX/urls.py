@@ -16,9 +16,8 @@ from django.contrib import admin
 from django.urls import path, include
 from user import views as user_views
 urlpatterns = [
-    path('',user_views.index,name='home'),
+    path('',include('user.urls')),
     path('quiz/', include('quiz.urls')),
     path('user/',include('user.urls')),
     path('admin/', admin.site.urls),
-
 ]

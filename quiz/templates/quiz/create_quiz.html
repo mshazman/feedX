@@ -1,0 +1,9 @@
+{% extends 'user/dashboard.html' %}
+{% load static %}
+{% block dashboard %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-danger" type="submit">Create</button>
+</form>
+{% endblock  %}
