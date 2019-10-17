@@ -4,6 +4,15 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import JsonResponse
+from django.contrib.admin.views.decorators import staff_member_required
+from scripts import git_pull
+
+
+@staff_member_required
+def pull_url(request):
+    message = git_pull()
+    return JsonResponse({'status':message})
 
 def index(request):
     return render(request,'index.html')
