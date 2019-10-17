@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block style %}
-<link href="../../static/user/dashboard.css" rel="stylesheet">
+
+<link href="{% static 'user/dashboard.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 <div class="page-wrapper chiller-theme toggled">
@@ -22,7 +24,8 @@
                         alt="User picture">
                 </div>
                 <div class="user-info">
-                    <span class="user-name">Shubham Pandey
+                    <span class="user-name"
+                        style="text-transform: uppercase;">{{user.username}}
                     </span>
                     <span class="user-role">Quiz Creator</span>
                 </div>
@@ -34,8 +37,7 @@
                         <span>General</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-tachometer-alt"></i>
+                        <a href="#" <i class="fa fa-tachometer-alt"></i>
                             <span>Create Quiz</span>
                         </a>
                     </li>
@@ -61,7 +63,7 @@
                 <span
                     class="badge badge-pill badge-warning notification">3</span>
             </a>
-            <a href="{% url 'logout' %}">
+            <a href="#">
                 <i class="fa fa-power-off"></i>
             </a>
         </div>
@@ -76,5 +78,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="../../static/user/dashboard.js" type="text/javascript"></script>
+<script src="{% static 'user/dashboard.js' %}" type="text/javascript"></script>
 {% endblock %}
