@@ -1,0 +1,119 @@
+<div class="col-md-12">
+    <input type="hidden" name="question-type" id="question-type" value="{{id}}">
+    {% if id == '2' %}
+    <!-- <select name="option" id="">
+        <option value="True">True</option>
+        <option value="False">False</option>
+    </select> -->
+    <!-- <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="option input-group-text">
+                <input type="radio">
+            </div>
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="radio"
+                    aria-label="Radio button for following text input">
+            </div>
+        </div>
+        <input type="text" class="form-control"
+            aria-label="Text input with radio button"> -->
+    <div class="radio">
+        <label><input type="radio" name="optradio" value="True"
+                id="yes">True</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="optradio" value="False"
+                id="no">False</label>
+    </div>
+    <br>
+    <button class="btn btn-block btn-success" type="button"
+        onclick="questionChoice()">Add</button>
+    {% elif id == '3'%}
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="radio"
+                    name="Radio button for following text input">
+            </div>
+        </div>
+        <input type="text" class="form-control" name="choice1"
+            placeholder="choice 1">
+    </div>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="radio"
+                    name="Radio button for following text input">
+            </div>
+        </div>
+        <input type="text" class="form-control" name="choice2"
+            placeholder="choice 2">
+    </div>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="radio"
+                    name="Radio button for following text input">
+            </div>
+        </div>
+        <input type="text" class="form-control" name="choice3"
+            placeholder="choice 3">
+    </div>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="radio"
+                    name="Radio button for following text input">
+            </div>
+        </div>
+        <input type="text" class="form-control" name="choice4"
+            placeholder="choice 4">
+    </div>
+    <!-- <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="1" name="choice1"
+            placeholder="Choice 1">
+    </div> -->
+    <!-- <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="2" name="choice2"
+            placeholder="Choice 2">
+    </div> -->
+    <!-- <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="3" name="choice3"
+            placeholder="Choice 3">
+    </div>
+    <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="4" name="choice4"
+            placeholder="Choice 4">
+    </div>
+    <div class="form-group col-md-12">
+        <input type="text" class="form-control"
+            placeholder="Enter the correct answer." id="correct">
+    </div> -->
+    <button class="btn btn-block btn-success" type="button"
+        onclick="questionChoice()" id="submit-btn">Add</button>
+    {% elif id == '4'%}
+    <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="1" placeholder="Choice 1">
+    </div>
+    <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="2" placeholder="Choice 2">
+    </div>
+    <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="3" placeholder="Choice 3">
+    </div>
+    <div class="form-group mt-3 col-md-12">
+        <input type="text" class="form-control" id="4" placeholder="Choice 4">
+    </div>
+    <div class="form-group col-md-12">
+        <input type="text" class="form-control"
+            placeholder="Enter the correct answer.">
+    </div>
+    <button class="btn btn-block btn-success" type="button"
+        onclick="questionChoice()">Add</button>
+
+    {% endif %}
+</div>

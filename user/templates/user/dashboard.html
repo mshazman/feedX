@@ -12,7 +12,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="#">Dashboard</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
                 <div id="close-sidebar">
                     <i class="fas fa-times"></i>
                 </div>
@@ -37,7 +37,8 @@
                         <span>General</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#" <i class="fa fa-tachometer-alt"></i>
+                        <a href="#" onclick="createQuiz('create_quiz.html')" <i
+                            class="fa fa-tachometer-alt"></i>
                             <span>Create Quiz</span>
                         </a>
                     </li>
@@ -69,7 +70,36 @@
         </div>
     </nav>
     <!-- sidebar-wrapper  -->
-    <main class="page-content">
+    <main class="page-content" id="dashboard-main">
+        <!-- <div class="text-center text-success " id="hh">
+            <h2>Events</h2>
+        </div>
+        <div id="quiz"></div> -->
+        {% for event in quiz %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-header">
+                            {{event.title}}
+                        </div>
+                        <div class="card-body">
+                            <!-- <img class="card-img-top"
+                                src='../../static/user/images/edu_ilastration.png'
+                                alt="Card image cap"
+                                style="height: 10em;width: 10em;"> -->
+                            <h4 class="card-title">{{event.owner.username}}</h4>
+                            <p class="card-text">{{event.description}}</p>
+                            <a href="#" class="btn btn-danger"
+                                id="{{event.quiz_id}}"
+                                onclick="addQuestion('add_question.html')">Add
+                                questions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
         {% block dashboard %}
         {% endblock %}
     </main>
