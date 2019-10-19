@@ -1,9 +1,8 @@
-console.log("javascript running");
-jQuery(function($) {
-  $("#close-sidebar").click(function() {
+jQuery(function ($) {
+  $("#close-sidebar").click(function () {
     $(".page-wrapper").removeClass("toggled");
   });
-  $("#show-sidebar").click(function() {
+  $("#show-sidebar").click(function () {
     $(".page-wrapper").addClass("toggled");
   });
 });
@@ -108,9 +107,12 @@ const quizData = () => {
   let form = $(".quiz-form").serializeArray();
   data = getFormDict(form);
   console.log(JSON.stringify(data));
-  fetch(`http://${host}/quiz/new/`, {
+  fetch(`http://${host}/quiz/api/quiz/`, {
     method: "POST",
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
   }).then(response => console.log(response.json()));
 };
 

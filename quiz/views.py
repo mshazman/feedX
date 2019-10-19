@@ -5,11 +5,12 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse, JsonResponse
 from quiz.forms import QuizForm
+from braces.views import CsrfExemptMixin
+from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from rest_framework import generics
-from quiz.models import *
 from quiz.serializers import *
 from . models import *
 # Create your views here.
@@ -33,7 +34,7 @@ class ListQuizView(LoginRequiredMixin, generics.ListCreateAPIView):
     filterset_fields = ['owner']
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user, quiz_id = 'u' +secrets.token_hex(8))
+        serializer.save(quiz_id = 'q' +secrets.token_hex(8))
 
 
 class DetailQuizView(generics.RetrieveUpdateDestroyAPIView):
@@ -101,6 +102,14 @@ def event(request,id=''):
         'question':questions,
     }
     return render(request,'quiz/participate.html',context)
+
+@csrf_exempt
+def new_quiz(request):
+    if request.method == 'POST':
+        if request.body:
+            data = json.loads(request.body)
+            print(data)
+    return json.dumps(request.body)
 
 @csrf_exempt
 def answerForm(request):

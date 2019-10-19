@@ -18,6 +18,7 @@
                 <div class="container">
                     <form method="POST" action="" class="quiz-form">
                         {% csrf_token %}
+                        <input type="hidden" name="owner" value="{{user.id}}">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <input type="text" class="form-control"
@@ -34,7 +35,7 @@
                         <div class="form-row">
                             <div class="form-row col-md-12">
                                 <button type="button"
-                                    class="btn btn-danger btn-block mt-4"
+                                    class="btn add-question btn-block mt-4"
                                     onclick="quizData()">Submit</button>
                             </div>
                         </div>

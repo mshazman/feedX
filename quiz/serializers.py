@@ -36,7 +36,7 @@ class SubmissionSerializer(serializers.ModelSerializer):
 
 
 class QuizSerializer(serializers.ModelSerializer):
-    owner = serializers.PrimaryKeyRelatedField(read_only=True)
+    owner = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     quiz_id = serializers.CharField(read_only=True)
     questions = QuestionSerializer(read_only=True, many=True)
     submissions = SubmissionSerializer(read_only=True, many=True)
