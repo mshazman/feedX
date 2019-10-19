@@ -1,0 +1,131 @@
+<input type="hidden" name="question-type" id="question-type" value="{{id}}"> {% if id == '1' %}
+<div class="form-row">
+    <div class="form offset-md-1 col-md-5">
+        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+    </div>
+    <div class="form col-md-5">
+        <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
+    </div>
+</div>
+{% elif id == '2' %}
+<div class="form-row">
+    <div class="form-row col-md-12">
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="radio" name="option" value="A{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" placeholder="True" value="True" readonly>
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="radio" name="option" value="B{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" placeholder="False" value="False" readonly>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form offset-md-1 col-md-5">
+        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+    </div>
+    <div class="form col-md-5">
+        <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
+    </div>
+</div>
+{% elif id == '3'%}
+<div class="form-row">
+    <div class="form-row col-md-12">
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="radio" name="option" value="A{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="radio" name="option" value="B{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="radio" name="option" value="C{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="radio" name="option" value="D{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form offset-md-1 col-md-5">
+        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+    </div>
+    <div class="form col-md-5">
+        <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
+    </div>
+</div>
+{% elif id == '4'%}
+<div class="form-row">
+    <div class="form-row col-md-12">
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" name="option" value="A{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" name="option" value="B{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" name="option" value="C{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" name="option" value="D{{hex}}" required>
+                </div>
+            </div>
+            <input type="text" name="option-text" class="form-control" required>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form offset-md-1 col-md-5">
+        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+    </div>
+    <div class="form col-md-5">
+        <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
+    </div>
+</div>
+
+{% endif %} {% load static %}
+<script src="{% static 'user/dashboard.js' %}" type="text/javascript"></script>

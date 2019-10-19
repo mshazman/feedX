@@ -1,0 +1,37 @@
+<div class="container-fuild offset-md-1 col-md-10">
+    <section class="d-flex align-items-center justify-content-center" id="testimonial">
+        <div class=" col-md-8 py-4 border registration-form">
+            <h4 class="pb-3 text-center"><b> Add Question</b></h4>
+            <div class="container-fuild">
+                <form method="POST" action="" class="question-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="quiz-id" value="{{id}}">
+                    <input type="hidden" name="question-id" value="Q{{hex}}">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" name="question-Text" placeholder="Question Text"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="btn-group btn-group-toggle col-md-12" role="group">
+                                <button type="button" class="btn btn-info" id="1" onclick="questionType()">Text</button>
+                                <button type="button" class="btn btn-info" id="2" onclick="questionType()">True/False</button>
+                                <button type="button" class="btn btn-info" id="3" onclick="questionType()">Single
+                                        choice</button>
+                                <button type="button" class="btn btn-info" id="4" onclick="questionType()">Multiple
+                                        choice</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fuild" id="question-option">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% load static %}
+<script src="{% static 'user/dashboard.js' %}" type="text/javascript"></script>

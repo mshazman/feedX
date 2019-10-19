@@ -14,4 +14,6 @@ urlpatterns = [
     path('api/answers/<pk>', quiz_views.DetailAnswerView.as_view()),
     path('api/submission', quiz_views.ListSubmissionView.as_view()),
     path('api/submission/<pk>', quiz_views.DetailSubmissionView.as_view()),
+    path('generate_id/',quiz_views.generate_id,name='create-id')
+
 ]

@@ -45,3 +45,4 @@ class AnswerSubmission(models.Model):
     sub_answer = models.ForeignKey(QuestionChoice, related_name='submission', on_delete=models.CASCADE, null=True)
     text_answer = models.CharField(max_length=150, null=True)
     is_right = models.BooleanField(null=True)
+

@@ -1,9 +1,46 @@
-{% extends 'user/dashboard.html' %}
-{% load static %}
-{% block dashboard %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button class="btn btn-danger" type="submit">Create</button>
-</form>
-{% endblock  %}
+<div class="container">
+    <section class="testimonial py-5 d-flex align-items-center"
+        id="testimonial">
+        <div class="row mt-5 offset-md-1 col-md-10">
+            <div class="col-md-5 py-5 bg-primary text-white text-center ">
+                <div class=" ">
+                    <div class="card-body">
+                        <img src="https://cdn.pixabay.com/photo/2017/01/08/10/49/group-1962592__340.png"
+                            style="width:30%">
+                        <h2 class="py-3 register-text">Create quiz</h2>
+                        <p class="register-text">Create your quiz.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 py-5 border registration-form">
+                <h4 class="pb-4 text-center"><b> Create Quiz</b></h4>
+                <div class="container">
+                    <form method="POST" action="" class="quiz-form">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control"
+                                    placeholder="Quiz Name" name="title">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control"
+                                    placeholder="Description"
+                                    name="description">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-row col-md-12">
+                                <button type="button"
+                                    class="btn btn-danger btn-block mt-4"
+                                    onclick="quizData()">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
