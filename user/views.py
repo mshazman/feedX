@@ -44,7 +44,7 @@ def dashboard(request):
         'quiz':quiz,
         'live':live_events
     }
-    print(quiz)
+    print(live_events)
     return render(request, 'user/dashboard.html',context)
 
 def test(request,filename,id=0, hex=0):

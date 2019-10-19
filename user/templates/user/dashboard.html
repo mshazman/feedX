@@ -99,10 +99,12 @@
                         <div class="card-body">
                             <h4 class="card-title">{{event.owner.username}}</h4>
                             <p class="card-text">{{event.description}}</p>
+                            {% with quiz_id=event.quiz_id %}
                             <a href="#" class="btn add-question"
                                 id="{{event.quiz_id}}"
-                                onclick="addQuestion('add_question.html')">Add
+                                onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
                                 questions</a>
+                            {% endwith %}
                         </div>
                     </div>
                 </div>
