@@ -14,6 +14,9 @@ urlpatterns = [
     path('api/answers/<pk>', quiz_views.DetailAnswerView.as_view()),
     path('api/submission', quiz_views.ListSubmissionView.as_view()),
     path('api/submission/<pk>', quiz_views.DetailSubmissionView.as_view()),
-    path('generate_id/',quiz_views.generate_id,name='create-id')
+    path('generate_id/',quiz_views.generate_id,name='create-id'),
+    path('event/<str:id>/',quiz_views.event,name='event'),
+    path('answer/',quiz_views.answerForm,name='answer'),
+    path('new/',quiz_views.new_quiz,name="new-quiz")
 
 ]

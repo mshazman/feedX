@@ -5,17 +5,12 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse, JsonResponse
 from quiz.forms import QuizForm
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-import secrets
-
 from rest_framework import generics
-from quiz.models import *
 from quiz.serializers import *
-
-
-class CreateQuizView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+from . models import *
+# Create your views here.
+class CreateQuizView(SuccessMessageMixin, CreateView):
 
     form_class = QuizForm
     template_name = 'quiz/create_quiz.html'
@@ -29,13 +24,13 @@ class CreateQuizView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 
-class ListQuizView(LoginRequiredMixin, generics.ListCreateAPIView):
+class ListQuizView(generics.ListCreateAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
     filterset_fields = ['owner']
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user, quiz_id = 'u' +secrets.token_hex(8))
+        serializer.save(quiz_id = 'q' +secrets.token_hex(8))
 
 
 class DetailQuizView(generics.RetrieveUpdateDestroyAPIView):
@@ -94,3 +89,29 @@ class DetailSubmissionView(generics.RetrieveUpdateDestroyAPIView):
 
 def generate_id(self):
         return JsonResponse({'id': str(secrets.token_hex(8))})
+
+def event(request,id=''):
+    quiz = Quiz.objects.get(quiz_id=id)
+    questions = quiz.question_set.all()
+    print(quiz.question_set.all())
+    context = {
+        'question':questions,
+    }
+    return render(request,'quiz/participate.html',context)
+
+@csrf_exempt
+def new_quiz(request):
+    if request.method == 'POST':
+        if request.body:
+            data = json.loads(request.body)
+            print(data)
+    return json.dumps(request.body)
+
+@csrf_exempt
+def answerForm(request):
+    if request.method == 'POST':
+        if request.body:
+            print(request.body)
+            data = json.loads(request.body)#jsonresponser of the submitted form
+            print(data['answer'])
+            return HttpResponse(request.body)

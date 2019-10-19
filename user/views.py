@@ -38,10 +38,11 @@ class UserLogoutView(LogoutView):
 
 def dashboard(request):
     print(request.user)
-    # quiz = Quiz.objects.filter(owner=request.user)
+    live_events = Quiz.objects.exclude(owner=request.user)
     quiz = request.user.quiz_set.all()
     context = {
-        'quiz':quiz
+        'quiz':quiz,
+        'live':live_events
     }
     print(quiz)
     return render(request, 'user/dashboard.html',context)
@@ -51,7 +52,6 @@ def test(request,filename,id=0, hex=0):
     context = {
         'id':id,
         'hex':hex
-
     }
     with open(filepath, 'r') as file:
         content = file.read()
