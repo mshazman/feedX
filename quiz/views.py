@@ -9,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from rest_framework import generics
 from quiz.serializers import *
 from . models import *
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 class CreateQuizView(SuccessMessageMixin, CreateView):
 
