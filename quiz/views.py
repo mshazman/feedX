@@ -5,16 +5,12 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse, JsonResponse
 from quiz.forms import QuizForm
-from braces.views import CsrfExemptMixin
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from rest_framework import generics
 from quiz.serializers import *
 from . models import *
 # Create your views here.
-class CreateQuizView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+class CreateQuizView(SuccessMessageMixin, CreateView):
 
     form_class = QuizForm
     template_name = 'quiz/create_quiz.html'
@@ -28,7 +24,7 @@ class CreateQuizView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 
-class ListQuizView(LoginRequiredMixin, generics.ListCreateAPIView):
+class ListQuizView(generics.ListCreateAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
     filterset_fields = ['owner']
