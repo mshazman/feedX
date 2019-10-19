@@ -34,8 +34,7 @@ const createQuiz = filename => {
 };
 
 // add a question on dashboard by removing the previous content
-const addQuestion = filename => {
-  quiz_id = event.target.id;
+const addQuestion = (quiz_id, filename) => {
   fetch(`http://${host}/quiz/generate_id/`)
     .then(res => res.json())
     .then(result => {
@@ -67,24 +66,99 @@ const editDashboard = result => {
   document.querySelector("#dashboard-main").innerHTML = result;
 };
 
-// data of particular question
-const questionChoice = () => {
+// data of particular question submit to database
+const submitQuestion = () => {
   event.preventDefault();
   let form = $(".question-form").serializeArray();
   let option = document.getElementsByName("option");
   let option_text = document.getElementsByName("option-text");
   data = getFormDict(form);
-  question_id = data["question-id"];
-  console.log(question_id);
-  console.log(option);
-  console.log(option_text);
+  question = {
+    "ques_type": data['question-type'],
+    "ques_id": data['question-id'],
+    "ques_text": data['question-Text'],
+    "quiz": data['quiz-id']
+  }
+  question_id = data['question-id']
   if (option.length > 0 && option_text.length > 0) {
     option_and_answer = getChoiceAndAnswer(question_id, option, option_text);
-    console.log(option_and_answer);
   }
-  console.log(JSON.stringify(data));
+  console.log(question)
+  fetch(`http://${host}/quiz/api/questions/`, {
+    method: "POST",
+    body: JSON.stringify(question),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "Accept": "application/json",
+    },
+  }).then(res => {
+    if (res.ok) {
+      choiceSubmission(data['quiz-id'], option_and_answer)
+    }
+  });
 };
 
+// submit choice to the database
+
+const choiceSubmission = (quiz_id, option_and_answer) => {
+  let choices = option_and_answer['choice'];
+  let answers = option_and_answer['answer'];
+  for (i = 0; i < choices.length; i++) {
+    data = {
+      "choice_id": choices[i]['option_id'],
+      "ques": choices[i]['question_id'],
+      "choice_text": choices[i]['option_text']
+    }
+    console.log(data)
+
+    if (i == choices.length - 1) {
+      fetch(`http://${host}/quiz/api/choices/`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "Accept": "application/json",
+        },
+      }).then(res => {
+        if (res.ok) {
+          correctAnswerSubmission(quiz_id, answers)
+        }
+      });
+    }
+    else {
+      fetch(`http://${host}/quiz/api/choices/`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "Accept": "application/json",
+        },
+      })
+    }
+  }
+}
+
+// submit answer of a particular question
+const correctAnswerSubmission = (quiz_id, answers) => {
+
+  answers.forEach(element => {
+    data = {
+      "ques": element['question_id'],
+      "answer": element['answer_id']
+    }
+    console.log(data)
+
+    fetch(`http://${host}/quiz/api/answers/`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        "Accept": "application/json",
+      },
+    })
+  });
+  addQuestion(quiz_id, 'add_question.html')
+}
 const getChoiceAndAnswer = (question_id, option, option_text) => {
   choice = [];
   answer = [];

@@ -1,7 +1,7 @@
 <input type="hidden" name="question-type" id="question-type" value="{{id}}"> {% if id == '1' %}
 <div class="form-row">
     <div class="form offset-md-1 col-md-5">
-        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+        <button type="submit" class="btn btn-info btn-block mt-4" id="{{id}}" onclick="submitQuestion()">Add More</button>
     </div>
     <div class="form col-md-5">
         <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
@@ -30,7 +30,7 @@
 </div>
 <div class="form-row">
     <div class="form offset-md-1 col-md-5">
-        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+        <button type="submit" class="btn btn-info btn-block mt-4" id="{{id}}" onclick="submitQuestion()">Add More</button>
     </div>
     <div class="form col-md-5">
         <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
@@ -75,7 +75,7 @@
 </div>
 <div class="form-row">
     <div class="form offset-md-1 col-md-5">
-        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+        <button type="submit" class="btn btn-info btn-block mt-4" id="{{id}}" onclick="submitQuestion()">Add More</button>
     </div>
     <div class="form col-md-5">
         <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
@@ -120,7 +120,7 @@
 </div>
 <div class="form-row">
     <div class="form offset-md-1 col-md-5">
-        <button type="submit" class="btn btn-info btn-block mt-4" onclick="questionChoice()">Add More</button>
+        <button type="submit" class="btn btn-info btn-block mt-4"  id="{{id}}" onclick="submitQuestion()">Add More</button>
     </div>
     <div class="form col-md-5">
         <button type="button" class="btn btn-info btn-block mt-4" onclick="">Finish</button>
