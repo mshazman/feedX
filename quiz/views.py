@@ -43,8 +43,8 @@ class ListQusetionView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     filterset_fields = ['quiz']
-    def perform_create(self, serializer):
-        serializer.save(ques_id = 'u' +secrets.token_hex(8))
+    # def perform_create(self, serializer):
+    #     serializer.save(ques_id = 'u' +secrets.token_hex(8))
 
 
 class DetailQuestionView(generics.RetrieveUpdateDestroyAPIView):
@@ -57,9 +57,6 @@ class ListChoiceView(generics.ListCreateAPIView):
     serializer_class = ChoiceSerializer
 
     filterset_fields = ['ques_id']
-
-    def perform_create(self, serializer):
-        serializer.save(choice_id = 'u' +secrets.token_hex(8))
 
 
 class DetailChoiceView(generics.RetrieveUpdateDestroyAPIView):
@@ -80,18 +77,16 @@ class DetailAnswerView(generics.RetrieveUpdateDestroyAPIView):
 
 class ListSubmissionView(generics.ListCreateAPIView):
     queryset = AnswerSubmission.objects.all()
-    serializer_class = AnswerSerializer
+    serializer_class = SubmissionSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-    filterset_fields = ['ques_id', 'user']
+    filterset_fields = ['ques_id', 'user', 'quiz']
 
 
 class DetailSubmissionView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AnswerSubmission.objects.all()
-    serializer_class = AnswerSerializer
+    serializer_class = SubmissionSerializer
 
 
-class ListQuizProfileView(generics.ListCreateAPIView):
-    queryset = Quiz.objects.all()
-    serializer_class = QuizProfileSerilaizer
+

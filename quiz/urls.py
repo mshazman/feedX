@@ -13,6 +13,5 @@ urlpatterns = [
     path('api/answers/', quiz_views.ListAnswerView.as_view()),
     path('api/answers/<pk>', quiz_views.DetailAnswerView.as_view()),
     path('api/submission', quiz_views.ListSubmissionView.as_view()),
-    path('api/submission', quiz_views.DetailSubmissionView.as_view()),
-    path('api/quizProfile', quiz_views.ListQuizProfileView.as_view())
+    path('api/submission/<pk>', quiz_views.DetailSubmissionView.as_view()),
 ]
