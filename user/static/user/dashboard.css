@@ -328,3 +328,21 @@ body {
 .chiller-theme .sidebar-footer>a:last-child {
     border-right: none;
 }
+/* question type button */
+.type-ques-btn, .add-question{
+    background-color: #4c9cdc;
+    padding: 0.375rem;
+    color: white;
+}
+.type-ques-btn, .add-question:hover{
+    background-color: #008dd8;
+    color: wheat;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span{
+    color: #bbd4e9;
+}
+
+#dashboard-links{
+    color: cornsilk;
+}

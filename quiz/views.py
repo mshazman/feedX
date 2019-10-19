@@ -8,13 +8,11 @@ from quiz.forms import QuizForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-import secrets
-
 from rest_framework import generics
 from quiz.models import *
 from quiz.serializers import *
-
-
+from . models import *
+# Create your views here.
 class CreateQuizView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     form_class = QuizForm
@@ -94,3 +92,21 @@ class DetailSubmissionView(generics.RetrieveUpdateDestroyAPIView):
 
 def generate_id(self):
         return JsonResponse({'id': str(secrets.token_hex(8))})
+
+def event(request,id=''):
+    quiz = Quiz.objects.get(quiz_id=id)
+    questions = quiz.question_set.all()
+    print(quiz.question_set.all())
+    context = {
+        'question':questions,
+    }
+    return render(request,'quiz/participate.html',context)
+
+@csrf_exempt
+def answerForm(request):
+    if request.method == 'POST':
+        if request.body:
+            print(request.body)
+            data = json.loads(request.body)#jsonresponser of the submitted form
+            print(data['answer'])
+            return HttpResponse(request.body)
