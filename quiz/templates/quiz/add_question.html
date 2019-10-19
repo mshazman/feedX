@@ -1,54 +1,37 @@
-<div class="container">
-    <section class="testimonial py-5 d-flex align-items-center"
-        id="testimonial">
-        <div class="row mt-5 offset-md-1 col-md-10">
-            <div class="col-md-5 py-5 bg-primary text-white text-center ">
-                <div class=" ">
-                    <div class="card-body">
-                        <h2 class="py-3 register-text">Create quiz</h2>
-                        <p class="register-text">Create your quiz.
-                        </p>
+<div class="container-fuild offset-md-1 col-md-10">
+    <section class="d-flex align-items-center justify-content-center" id="testimonial">
+        <div class=" col-md-8 py-4 border registration-form">
+            <h4 class="pb-3 text-center"><b> Add Question</b></h4>
+            <div class="container-fuild">
+                <form method="POST" action="" class="question-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="quiz-id" value="{{id}}">
+                    <input type="hidden" name="question-id" value="Q{{hex}}">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" name="question-Text" placeholder="Question Text"></textarea>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-7 py-5 border registration-form">
-                <h4 class="pb-4 text-center"><b> Add Questions</b></h4>
-                <div class="container">
-                    <form method="POST" action="" class="question-form">
-                        {% csrf_token %}
-                        <input type="hidden" id="quiz-id" name="quiz-id"
-                            value="{{ id }}">
-                        <input type="hidden" id="question-id" name="question-id"
-                            value="p{{hex}}">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <input type="text" class="form-control"
-                                    placeholder="Question" name="question">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="btn-group btn-group-toggle col-md-12" role="group">
+                                <button type="button" class="btn btn-info" id="1" onclick="questionType()">Text</button>
+                                <button type="button" class="btn btn-info" id="2" onclick="questionType()">True/False</button>
+                                <button type="button" class="btn btn-info" id="3" onclick="questionType()">Single
+                                        choice</button>
+                                <button type="button" class="btn btn-info" id="4" onclick="questionType()">Multiple
+                                        choice</button>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="btn-group btn-group-toggle col-md-12"
-                                role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-danger"
-                                    id="1">Text</button>
-                                <button type="button" class="btn btn-danger"
-                                    id="2"
-                                    onclick="questionType()">True/False</button>
-                                <button type="button" class="btn btn-danger"
-                                    id="3" onclick="questionType()">Single
-                                    choice</button>
-                                <button type="button" class="btn btn-danger"
-                                    id="4" onclick="questionType()">Multiple
-                                    choice</button>
-                            </div>
-                        </div>
-                        <div class="form-row col-md-12" id="question-option">
+                    </div>
+                    <div class="container-fuild" id="question-option">
 
-                        </div>
-                </div>
+                    </div>
                 </form>
             </div>
         </div>
+    </section>
 </div>
-</section>
-</div>
+
+{% load static %}
+<script src="{% static 'user/dashboard.js' %}" type="text/javascript"></script>

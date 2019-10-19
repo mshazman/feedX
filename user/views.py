@@ -48,3 +48,6 @@ def test(request,filename,id=0, hex=0):
     with open(filepath, 'r') as file:
         content = file.read()
     return render(request,f'quiz/{filename}',context)
+
+def testfunction(request):
+    return render(request, 'user/test.html')
