@@ -33,10 +33,6 @@ ALLOWED_HOSTS = [os.getenv('HOST_NAME')]
 # Application definition
 
 INSTALLED_APPS = [
-    'drf_multiple_model',
-    'django_filters',
-    'crispy_forms',
-    'rest_framework',
     'quiz.apps.QuizConfig',
     'user.apps.UserConfig',
     'django.contrib.admin',
@@ -45,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'crispy_forms',
+    'rest_framework',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -8,7 +8,6 @@ from quiz.forms import QuizForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from drf_multiple_model.views import ObjectMultipleModelAPIView
 import secrets
 
 from rest_framework import generics
