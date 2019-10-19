@@ -33,7 +33,10 @@ ALLOWED_HOSTS = [os.getenv('HOST_NAME')]
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_multiple_model',
+    'django_filters',
     'crispy_forms',
+    'rest_framework',
     'quiz.apps.QuizConfig',
     'user.apps.UserConfig',
     'django.contrib.admin',
@@ -131,3 +134,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

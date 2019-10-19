@@ -14,5 +14,33 @@ class Quiz(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     is_live = models.BooleanField(default=False)
 
-    # def generate_id(self):
-    #     return str('q'+secrets.token_hex(8))
+
+class QuestionType(models.Model):
+    name = models.CharField(max_length=30)
+
+
+class Question(models.Model):
+    quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
+    ques_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE)
+    ques_id = models.CharField(max_length=50,primary_key=True,null=False)
+    ques_text = models.CharField(max_length=30)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+
+class QuestionChoice(models.Model):
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_id = models.CharField(max_length=50, primary_key=True, null=False)
+    choice_text = models.CharField(max_length=30)
+
+
+class Answer(models.Model):
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.ForeignKey(QuestionChoice, on_delete=models.CASCADE)
+
+
+class AnswerSubmission(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE)
+    sub_answer = models.ForeignKey(QuestionChoice, on_delete=models.CASCADE, null=True)
+    text_answer = models.CharField(max_length=150, null=True)
+    is_right = models.BooleanField(null=True)
