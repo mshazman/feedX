@@ -14,28 +14,35 @@ class Quiz(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     is_live = models.BooleanField(default=False)
 
+
 class QuestionType(models.Model):
     name = models.CharField(max_length=30)
 
+
 class Question(models.Model):
-   quiz_id = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-   ques_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE)
-   ques_id = models.CharField(max_length=50,primary_key=True,null=False)
-   ques_text = models.CharField(max_length=30,null=False)
-   timestamp = models.DateTimeField(default=timezone.now)
+    quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
+    ques_type = models.ForeignKey(QuestionType,related_name='questions', on_delete=models.CASCADE)
+    ques_id = models.CharField(max_length=50,primary_key=True,null=False)
+    ques_text = models.CharField(max_length=30)
+    timestamp = models.DateTimeField(default=timezone.now)
+
 
 class QuestionChoice(models.Model):
-   question = models.ForeignKey(Question, on_delete=models.CASCADE)
-   choice_id = models.CharField(max_length=50, primary_key=True, null=False)
-   choice_text = models.CharField(max_length=30,null=False)
+    ques = models.ForeignKey(Question,related_name='choices', on_delete=models.CASCADE)
+    choice_id = models.CharField(max_length=50, primary_key=True, null=False)
+    choice_text = models.CharField(max_length=30)
+
 
 class Answer(models.Model):
-   question = models.ForeignKey(Question, on_delete=models.CASCADE)
-   answer = models.ForeignKey(QuestionChoice, on_delete=models.CASCADE)
+    ques = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
+    answer = models.ForeignKey(QuestionChoice, related_name='answers', on_delete=models.CASCADE)
+
 
 class AnswerSubmission(models.Model):
-   user = models.ForeignKey(User, on_delete=models.CASCADE)
-   question = models.ForeignKey(Question, on_delete=models.CASCADE)
-   sub_answer = models.ForeignKey(QuestionChoice, on_delete=models.CASCADE, null=True)
-   text_answer = models.CharField(max_length=150, null=True)
-   is_right = models.BooleanField(null=True)
+    user = models.ForeignKey(User,related_name='submission', on_delete=models.CASCADE)
+    ques = models.ForeignKey(Question,related_name='submission', on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz,related_name='submission', on_delete=models.CASCADE)
+    sub_answer = models.ForeignKey(QuestionChoice, related_name='submission', on_delete=models.CASCADE, null=True)
+    text_answer = models.CharField(max_length=150, null=True)
+    is_right = models.BooleanField(null=True)
+

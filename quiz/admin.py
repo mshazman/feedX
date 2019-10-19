@@ -8,3 +8,4 @@ admin.site.register(QuestionChoice)
 admin.site.register(QuestionType)
 admin.site.register(AnswerSubmission)
 admin.site.register(Answer)
+
