@@ -44,6 +44,6 @@ class QuizSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ['title', 'owner', 'description', 'quiz_id', 'questions', 'submissions']
+        fields = ['title', 'owner', 'description', 'quiz_id', 'questions', 'submissions','is_live']
 
 

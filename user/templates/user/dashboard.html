@@ -89,23 +89,28 @@
         <div id="quiz"></div> -->
 
         <div class="container" id="my-events">
-            <div class="row">
+            <div class="row" id="question">
                 {% for event in quiz %}
-                <div class="col-md-4 col-sm-12 col-lg-4">
-                    <div class="card" style="width: 20rem;">
-                        <div class="card-header">
-                            {{event.title}}
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">{{event.owner.username}}</h4>
-                            <p class="card-text">{{event.description}}</p>
-                            {% with quiz_id=event.quiz_id %}
-                            <a href="#" class="btn add-question"
-                                id="{{event.quiz_id}}"
-                                onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
-                                questions</a>
-                            {% endwith %}
-                        </div>
+                <div class="card myevent-card">
+                    <div class="card-img-block text-center">
+                        <img src="https://source.unsplash.com/200x200/?brainstorm,abstract,business"
+                            id="card-image"> </div>
+                    <div class="card-body pt-0" style="margin-top:-4rem;">
+                        <h5 class="card-title">{{event.title}}</h5>
+                        <p class="card-text">{{event.description}}</p>
+                        {% with quiz_id=event.quiz_id %}
+                        {% if event.is_live == 'true'%}
+                        <a href="#" class="btn btn-block add-question"
+                            id="{{event.quiz_id}}"
+                            onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
+                            questions</a>
+                        {% else %}
+                        <a href="#"
+                            onclick="showDetails('{{quiz_id}}','show_question.html')"
+                            class="btn btn-block add-question">Show
+                            Details</a>
+                        {% endif %}
+                        {% endwith %}
                     </div>
                 </div>
                 {% endfor %}
@@ -126,11 +131,12 @@
                                 style="height: 10em;width: 10em;"> -->
                             <h4 class="card-title">{{event.owner.username}}</h4>
                             <p class="card-text">{{event.description}}</p>
-
-                            {% if event.quiz_id != '' %}
+                            {% if event.is_live == True %}
                             <a href="{%url 'event' id=event.quiz_id%}"
                                 class="btn btn-primary"
                                 id="{{event.quiz_id}}">{{event.quiz_id}}</a>
+                            {% else %}
+                            <a href="#">Ended</a>
                             {% endif %}
                         </div>
                     </div>
@@ -147,4 +153,6 @@
 {% block scripts %}
 <script src="{% static 'user/dashboard.js' %}" type="text/javascript">
 </script>
+<script src="anime.min.js"></script>
+
 {% endblock %}
