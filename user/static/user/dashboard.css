@@ -332,14 +332,16 @@ body {
 .type-ques-btn, .add-question{
     background-color: #4c9cdc;
     padding: 0.375rem;
-    color: dee2e6;
-    transition: 0.8s all ease-in-out;
+    color: #dee2e6;
+    transition: 0.6s all ease-in-out;
 }
 .type-ques-btn, .add-question:hover{
-    background-color: #008dd8;
-    color: wheat;
-    border-top-left-radius: 2em;
-    border-bottom-right-radius: 2em;
+    background-color: #e8eb35;
+    color: black;
+    font-weight: 600;
+    border-radius: 2em !important;
+    /* border-top-left-radius: 2em;
+    border-bottom-right-radius: 2em; */
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span{
@@ -348,4 +350,108 @@ body {
 
 #dashboard-links{
     color: cornsilk;
+}
+
+/* dashboard card styles */
+
+.myevent-card {
+    margin-top: 20px;
+    width: 20rem;
+    height: 21.5rem;
+}
+.myevent-card .btn {
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 7px 20px;
+}
+.myevent-card .card-img-block {
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+}
+.myevent-card .card-img-block img {
+    width: 97%;
+    height: 80%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
+    transition:0.6s all ease
+}
+.myevent-card .card-img-block img:hover {
+    opacity: 0.8;
+    filter:alpha(opacity=80);
+}
+.myevent-card h5 {
+    color: black;
+    font-weight: 600;
+}
+.myevent-card p {
+    font-size: 14px;
+    font-weight: 300;
+}
+.myevent-card .btn-primary {
+    background-color: #4E5E30;
+    border-color: #4E5E30;
+}
+/* my question list styles */
+
+.panel{
+    background: #DAE2F8;
+    padding: 1.5em;
+    background: -webkit-linear-gradient(to right, #DAE2F8, #D6A4A4);
+    background: linear-gradient(to right,  #DAE2F8, #D6A4A4);
+    border-top-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    box-shadow: 9px -8px 4px 11px pink;
+}
+.ques-table{
+    padding: 2em;
+}
+.row{
+    margin-top:40px;
+    padding: 0 10px;
+}
+.clickable{
+    cursor: pointer;
+}
+
+.panel-heading div {
+    margin-top: -18px;
+    font-size: 15px;
+}
+.panel-heading div span{
+    margin-left:5px;
+}
+.panel-body{
+    display: none;
+}
+
+/* /* create-quiz-form */
+.createquiz-form{
+    background: #DAE2F8;
+    background: -webkit-linear-gradient(to right, #DAE2F8, #D6A4A4);
+    background: linear-gradient(to right,  #DAE2F8, #D6A4A4);
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+    height: 100%;
+    width: 100%;
+}
+.bb{
+    background: url('../../static/user/images/rsz_vector-creative-brainstorm-concept-business-idea-innovation-solution-creative-design-flat-design-90201820\(1\).jpg');
+    background-size: cover;
+}
+.type-ques-btn, .add-quiz{
+    background-color: #4c9cdc;
+    padding: 0.375rem;
+    color: #dee2e6;
+    transition: 0.6s all ease-in-out;
+}
+.type-ques-btn, .add-quiz:hover{
+    background-color: #eb8d35;
+    color: white;
+    font-weight: 400;
+    border-radius: 2em !important;
+    /* border-top-left-radius: 2em;
+    border-bottom-right-radius: 2em; */
 }

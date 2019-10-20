@@ -42,6 +42,6 @@ class QuizSerializer(serializers.ModelSerializer):
     submissions = SubmissionSerializer(read_only=True, many=True)
     class Meta:
         model = Quiz
-        fields = ['title', 'owner', 'description', 'quiz_id', 'questions', 'submissions']
+        fields = ['title', 'owner', 'description', 'quiz_id', 'questions', 'submissions','is_live']
 
 

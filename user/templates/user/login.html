@@ -1,6 +1,11 @@
 {% extends 'base.html' %} {% load static %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'user/login.css' %}">
+<style>
+    body {
+        background: olive;
+    }
+</style>
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
@@ -10,8 +15,10 @@
             <div class="login d-flex align-items-center py-5">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-9 col-lg-8 mx-auto">
-                            <h3 class="login-heading mb-4">Welcome back!</h3>
+                        <div class="col-md-9 col-lg-8 mx-auto login-section">
+                            <h3 class="login-heading mb-4 text-center">Welcome
+                                Back&nbsp;!!
+                            </h3>
                             <form method="post" action="">
                                 {% csrf_token %}
                                 <div class="form-label-group">

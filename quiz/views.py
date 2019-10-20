@@ -33,7 +33,6 @@ class ListQuizView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(quiz_id = 'q' +secrets.token_hex(8))
 
-
 class DetailQuizView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
@@ -93,8 +92,8 @@ def generate_id(self):
 
 def event(request,id=''):
     quiz = Quiz.objects.get(quiz_id=id)
-    questions = quiz.question_set.all()
-    print(quiz.question_set.all())
+    questions = quiz.questions.all()
+    # print(questions.choices.all())
     context = {
         'question':questions,
     }

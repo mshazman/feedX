@@ -5,11 +5,14 @@
         <form action="" method="POST" class="answer-form">
             {% csrf_token %}
             {% for problem in question %}
-            {% if problem.ques_type.name == 'Text' %}
+            {% if problem.ques_type.name == 'single select' %}
             <div class="col-md-12">
                 <h3>{{problem.ques_text}}</h3>
-                <input type="text" class="form-control" name="answer"
-                    placeholder="your answer">
+                {%with choices=problem.choices.all()%}
+                {%for choice in choices %}
+                <p>{{choice.choice_text}}</p>
+                {%endfor%}
+                {%endwith%}
             </div>
             {% endif %}
             {% endfor %}
