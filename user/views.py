@@ -3,13 +3,12 @@ from django.shortcuts import render
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from quiz.models import *
-from django.http import HttpResponse, JsonResponse
-from django.contrib.auth.models import User
-from  django.contrib.admin.views.decorators import staff_member_required
-from scripts import  git_pull
+from quiz.models import Quiz
+from django.http import JsonResponse
+from django.contrib.admin.views.decorators import staff_member_required
+from scripts import git_pull
 
 
 @staff_member_required
@@ -20,12 +19,14 @@ def pull_url(request):
 def index(request):
     return render(request,'index.html')
 
+  
 class UserRegisterView(SuccessMessageMixin, CreateView):
     form_class = UserRegistrationForm
     template_name = 'user/register.html'
     success_url = reverse_lazy('login')
     success_message = "Account created. Now you can login!!"
 
+    
 class UserLoginView(LoginView):
     template_name = 'user/login.html'
     authentication_form = UserLoginForm
@@ -47,6 +48,7 @@ def dashboard(request):
     print(live_events)
     return render(request, 'user/dashboard.html',context)
 
+
 def test(request,filename,id=0, hex=0):
     filepath = os.path.join(os.getcwd(),'quiz/templates/quiz/'+filename)
     id = str(id)
@@ -64,8 +66,6 @@ def test(request,filename,id=0, hex=0):
         content = file.read()
     return render(request,f'quiz/{filename}',context)
 
-def testfunction(request):
-    return render(request, 'user/test.html')
 
 '''404 custom error handling'''
 def handler404(request,exception):
@@ -74,3 +74,4 @@ def handler404(request,exception):
 '''500 custom error handling'''
 def handler500(request):
     return render(request, '500.html', status=500)
+

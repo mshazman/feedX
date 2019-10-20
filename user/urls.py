@@ -12,5 +12,4 @@ urlpatterns = [
     path('file/<str:filename>/<str:id>/<str:hex>',user_views.test),
     path('file/<str:filename>/<str:id>',user_views.test),
     path('file/<str:filename>',user_views.test),
-    path('test/',user_views.testfunction)
 ]
