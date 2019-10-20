@@ -28,11 +28,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
-    quiz_id = serializers.CharField()
+    # quiz_id = serializers.CharField()
     class Meta:
         model = AnswerSubmission
-        fields = ['user', 'ques', 'sub_answer', 'text_answer', 'is_right', 'quiz_id']
-        read_only_fields = ['user', 'is_right']
+        fields = ['user', 'ques', 'sub_answer', 'text_answer', 'is_right', 'quiz']
+        read_only_fields = ['is_right']
 
 
 class QuizSerializer(serializers.ModelSerializer):
