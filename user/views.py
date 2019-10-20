@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from quiz.models import Quiz, QuestionType
+from quiz.models import *
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from  django.contrib.admin.views.decorators import staff_member_required
@@ -38,7 +38,7 @@ class UserLogoutView(LogoutView):
 
 def dashboard(request):
     print(request.user)
-    live_events = Quiz.objects.exclude(owner=request.user)
+    live_events = Quiz.objects.exclude(owner=request.user).filter(is_live=True)
     quiz = request.user.quiz_set.all()
     context = {
         'quiz':quiz,
@@ -49,9 +49,16 @@ def dashboard(request):
 
 def test(request,filename,id=0, hex=0):
     filepath = os.path.join(os.getcwd(),'quiz/templates/quiz/'+filename)
+    id = str(id)
+    if id.startswith('q'):
+        quiz=Quiz.objects.get(quiz_id=id)
+        questions = quiz.questions.all()
+    else:
+        questions={}
     context = {
         'id':id,
-        'hex':hex
+        'hex':hex,
+        'questions':questions
     }
     with open(filepath, 'r') as file:
         content = file.read()
@@ -59,3 +66,11 @@ def test(request,filename,id=0, hex=0):
 
 def testfunction(request):
     return render(request, 'user/test.html')
+
+'''404 custom error handling'''
+def handler404(request,exception):
+    return render(request, '404.html', status=404)
+
+'''500 custom error handling'''
+def handler500(request):
+    return render(request, '500.html', status=500)
