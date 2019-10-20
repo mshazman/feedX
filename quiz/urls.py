@@ -3,7 +3,6 @@ from . import views as quiz_views
 
 name = 'quiz'
 urlpatterns = [
-    path('create/',quiz_views.CreateQuizView.as_view(),name='create-quiz'),
     path('api/quiz/', quiz_views.ListQuizView.as_view()),
     path('api/quiz/<pk>/', quiz_views.DetailQuizView.as_view()),
     path('api/questions/', quiz_views.ListQusetionView.as_view()),

@@ -3,11 +3,10 @@ from django.shortcuts import render
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from quiz.models import Quiz, QuestionType
-from django.http import HttpResponse, JsonResponse
-from django.contrib.auth.models import User
+from quiz.models import Quiz
+from django.http import JsonResponse
 from  django.contrib.admin.views.decorators import staff_member_required
 from scripts import  git_pull
 
@@ -47,6 +46,7 @@ def dashboard(request):
     print(live_events)
     return render(request, 'user/dashboard.html',context)
 
+
 def test(request,filename,id=0, hex=0):
     filepath = os.path.join(os.getcwd(),'quiz/templates/quiz/'+filename)
     context = {
@@ -57,5 +57,4 @@ def test(request,filename,id=0, hex=0):
         content = file.read()
     return render(request,f'quiz/{filename}',context)
 
-def testfunction(request):
-    return render(request, 'user/test.html')
+
