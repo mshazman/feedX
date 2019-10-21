@@ -323,9 +323,14 @@ body {
 }
 /* other events card */
 .otherevent-card {
-    margin-top: 20px;
     width: 20rem;
     height: 23.5rem;
+    margin-left: 1.5rem;
+
+}
+
+.otherevent-card .card-body{
+    margin-top: -4rem;
 }
 .otherevent-card .btn {
     border-radius: 2px;
