@@ -102,6 +102,8 @@
                             onclick="showDetails('{{quiz_id}}','show_question.html')"
                             class="btn btn-block add-question">Show
                             Details</a>
+                            <a href= "{% url 'result' quiz_id=quiz_id %}"
+                            class="btn btn-block add-question">Result</a>
                         {% endif %}
                         {% endwith %}
 
