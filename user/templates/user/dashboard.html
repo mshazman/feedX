@@ -21,10 +21,13 @@
             </div>
             <div class="sidebar-header">
                 <div class="user-pic">
-                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
+                    <img class="img-responsive img-rounded"
+                        src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                        alt="User picture">
                 </div>
                 <div class="user-info">
-                    <span class="user-name" style="text-transform: uppercase;">{{user.username}}
+                    <span class="user-name"
+                        style="text-transform: uppercase;">{{user.username}}
                     </span>
                     <span class="user-role">Quiz Creator</span>
                 </div>
@@ -36,7 +39,9 @@
                         <span>General</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#" onclick="createQuiz('create_quiz.html')" id="dashboard-links"> <i <i class="fa fa-question-circle"></i><span>Create
+                        <a href="#" onclick="createQuiz('create_quiz.html')"
+                            id="dashboard-links"> <i <i
+                                class="fa fa-question-circle"></i><span>Create
                                 Quiz</span>
                         </a>
                     </li>
@@ -66,7 +71,8 @@
         <div class="sidebar-footer">
             <a href="#">
                 <i class="fa fa-bell"></i>
-                <span class="badge badge-pill badge-warning notification">3</span>
+                <span
+                    class="badge badge-pill badge-warning notification">3</span>
             </a>
             <a href="{% url 'logout' %}">
                 <i class="fa fa-power-off"></i>
@@ -106,21 +112,22 @@
         </div>
         <div class="container" id="live-events" style="display: none;">
             <div class="row">
-                {% for event in quiz %}
+                {% for event in participation %}
                 <div class="card otherevent-card">
                     <div class="card-img-block text-center">
                         <img src="https://source.unsplash.com/200x200/?brainstorm,abstract,business"
                             id="card-image"> </div>
                     <div class="card-body pt-0" id="card-event">
-                        <h5 class="card-title">{{event.title}}</h5>
+                        <h5 class="card-title">{{event.live.title}}</h5>
                         <p></p>
-                        <p class="card-text">{{event.owner.username}}</p>
-                        <p class="card-text">{{event.description}}</p>
-                        {% if event.is_live == True %}
-                        <a href="{%url 'event' id=event.quiz_id%}"
+                        <p class="card-text">{{event.live.owner.username}}</p>
+                        <p class="card-text">{{event.live.description}}</p>
+                        {% if event.status == False %}
+                        <a href="{%url 'event' id=event.live.quiz_id%}"
                             class="btn btn-block add-question pb-2"
-                            id="{{event.quiz_id}}">{{event.quiz_id}}</a>
+                            id="{{event.live.quiz_id}}">Participate</a>
                         {% else %}
+                        {{participation.status}}
                         <a href="#" class="btn btn-block add-question">Ended</a>
                         {% endif %}
                     </div>

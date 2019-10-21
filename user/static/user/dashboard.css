@@ -322,7 +322,12 @@ body {
     font-weight: 300;
 }
 /* other events card */
+
+#live-events{
+    margin-left: -2rem;
+}
 .otherevent-card {
+    margin-bottom: 3rem;
     width: 20rem;
     height: 23.5rem;
     margin-left: 1.5rem;
