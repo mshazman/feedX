@@ -1,0 +1,97 @@
+.card-banner {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.card-banner .card-body {
+    background-size: cover;
+    position: relative;
+    z-index: 10;
+}
+
+
+/* overlay effects */
+
+.overlay-cover {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: 10;
+    padding: 1.25rem;
+    color: #fff;
+}
+
+.overlay-grad {
+    position: relative;
+    box-shadow: 0px 10px 90px 10px rgba(0, 0, 0, 0.34);
+}
+
+.overlay-grad::before {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #e83e8c;
+    background: -webkit-gradient(linear, left top, right bottom, from(#007bff), to(#e83e8c));
+    background: linear-gradient(to bottom right, #007bff, #e83e8c);
+    opacity: .6;
+    transition: .5s;
+}
+
+.overlay-grad:hover:before {
+    opacity: .9;
+}
+
+.question-card {
+    margin-top: 20px;
+    height: auto;
+}
+
+.question-card .btn {
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 7px 20px;
+}
+
+.question-card .card-img-block {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+    height: auto;
+    /* box-shadow: 0px 10px 60px -10px rgba(0, 0, 0, 0.34); */
+    position: relative;
+    background: -webkit-gradient(linear, left top, right bottom, from(#007bff), to(#e83e8c));
+    background: linear-gradient(to bottom right, #007bff, #e83e8c);
+    top: -20px;
+    transition: .5s;
+}
+
+.question-card h5 {
+    color: black;
+    font-weight: 600;
+}
+
+.question-card p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.question-card .btn-primary {
+    background-color: #4E5E30;
+    border-color: #4E5E30;
+}

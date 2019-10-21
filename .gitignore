@@ -76,7 +76,7 @@ docs/_build/
 
 # PyBuilder
 target/
-
+.requirements.txt.swp
 
 ### Django ###
 *.log
