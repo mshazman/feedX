@@ -12,6 +12,13 @@ class Quiz(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     is_live = models.BooleanField(default=False)
 
+    def is_participant(self, user_id):
+        submission_count = self.submission.values('sub_answer').filter(user=user_id).count()
+        if submission_count is 0:
+            return False
+        else:
+            return True
+
     def check_answer(self, ques_id, user_id):
         ques_type = Question.objects.values('ques_type__id').filter(pk=ques_id)[0]
         ques_type = ques_type['ques_type__id']

@@ -19,14 +19,14 @@ def pull_url(request):
 def index(request):
     return render(request,'index.html')
 
-  
+
 class UserRegisterView(SuccessMessageMixin, CreateView):
     form_class = UserRegistrationForm
     template_name = 'user/register.html'
     success_url = reverse_lazy('login')
     success_message = "Account created. Now you can login!!"
 
-    
+
 class UserLoginView(LoginView):
     template_name = 'user/login.html'
     authentication_form = UserLoginForm
@@ -36,16 +36,21 @@ class UserLoginView(LoginView):
 class UserLogoutView(LogoutView):
     next_page = '/'
 
-
+'''function for displaying events of user and events that user can participate in'''
 def dashboard(request):
     print(request.user)
-    live_events = Quiz.objects.exclude(owner=request.user).filter(is_live=True)
+    other_events = Quiz.objects.exclude(owner__username=str(request.user))
+    live_events = [
+                    {'status':result.is_participant(request.user.id),
+                    'live': result
+                    }
+                    for result in other_events
+                  ]
     quiz = request.user.quiz_set.all()
     context = {
+        'participation':live_events,
         'quiz':quiz,
-        'live':live_events
     }
-    print(live_events)
     return render(request, 'user/dashboard.html',context)
 
 

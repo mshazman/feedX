@@ -175,17 +175,23 @@ const getChoiceAndAnswer = (question_id, option, option_text) => {
 };
 // add a quiz
 const quizData = () => {
-    event.preventDefault();
-    let form = $(".quiz-form").serializeArray();
-    data = getFormDict(form);
-    console.log(JSON.stringify(data));
-    fetch(`http://${host}/quiz/api/quiz/`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(response => console.log(response.json()));
+
+  event.preventDefault();
+  let form = $(".quiz-form").serializeArray();
+  data = getFormDict(form);
+  console.log(JSON.stringify(data));
+  fetch(`http://${host}/quiz/api/quiz/`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(response =>
+    response.json().then(res => {
+      console.log(res);
+      dashboard();
+    })
+  );
 };
 
 // to submit an answer
@@ -258,5 +264,4 @@ const showDetails = (quiz_id, filename) => {
         });
 };
 
-// animate js
 
