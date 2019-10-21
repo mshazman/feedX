@@ -1,44 +1,119 @@
-{% extends 'base.html' %}
+{% extends 'navbar.html' %}
 {% load static %}
 
 {% block style %}
     <style>
         body {
-            background-image: url({% static 'user/images/dashback.jpg' %});
-            background-size: cover;
-        }</style>
+            background: #FFEFBA;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #d5c5ea, #FFFEFB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+        .leader-board-container {
+            height: 400px;
+            background-color: transparent;
+            box-shadow: 5px 5px rgba(24, 24, 24, 0.13);
+            border: 1px solid lightgray;
+        }
+
+        .leader-board-footer {
+            height: 50px;
+            padding-top: 5px;
+            background-color: #e5dbf1;
+            box-shadow: 5px 5px rgba(24, 24, 24, 0.13);
+        }
+        .leader-board-footer ul{
+            display: flex;
+            margin: auto;
+        }
+        .leader-board-footer li{
+            justify-content: center;
+        }
+
+        .leaderboard-header {
+            height: 50px;
+            background-image: linear-gradient(to right, #9f68e6, #d5c5ea);
+        }
+
+        .leaderboard-header {
+            text-align: center !important;
+            color: white;
+            line-height: 50px;
+        }
+
+        .footer-link-background{
+            background-color: transparent;
+        }
+    </style>
 {% endblock %}
 
-{% block content %}
+{% block app %}
 
     <div class="container">
         <br>
-        <h2 class="h2-responsive">{{ quiz.title }}</h2>
-        <table class="table table-bordered" style="background-color: #e0d3e4">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Total Qusetions</th>
-                <th scope="col">Attempts</th>
-                <th scope="col">Correct</th>
-                <th scope="col">Wrong</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for result in results %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{result.username}}</td>
-                <td>{{result.total_question}}</td>
-                <td>{{result.attempt}}</td>
-                <td>{{result.correct}}</td>
-                <td>{{ result.wrong }}</td>
-            </tr>
-            {% endfor %}
+        <br>
 
-            </tbody>
-        </table>
+
+    </div>
+
+    <div class="container leader-board-container">
+        <div class="row leaderboard-header" style="text-align:center!important;">
+            {{ quiz.title }}
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Total Qusetions</th>
+                    <th scope="col">Attempts</th>
+                    <th scope="col">Correct</th>
+                    <th scope="col">Wrong</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for result in results %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ result.username }}</td>
+                        <td>{{ result.total_question }}</td>
+                        <td>{{ result.attempt }}</td>
+                        <td>{{ result.correct }}</td>
+                        <td>{{ result.wrong }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="container leader-board-footer">
+        <nav>
+            <ul class="pagination">
+                {% if results.has_previous %}
+                <li class="page-item">
+                    <a class="page-link footer-link-background" href="?page={{ results.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                {% endif %}
+
+                {% if results.has_previous %}
+                <li class="page-item">
+                    <a class="page-link footer-link-background" href=""?page={{ results.next_page_number }}"" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
 
 {% endblock %}
