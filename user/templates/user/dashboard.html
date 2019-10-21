@@ -53,8 +53,9 @@
                         </a>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#" id="dashboard-links" onclick="liveEvents('live_events.html')">
-                            <i class="fa fa-free-code-camp" aria-hidden="true"></i>
+                        <a href="#" id="dashboard-links" onclick="liveEvents()">
+                            <i class="fa fa-free-code-camp"
+                                aria-hidden="true"></i>
                             <span>Live Events</span>
                         </a>
                     </li>
@@ -74,8 +75,7 @@
     </nav>
     <!-- sidebar-wrapper  -->
     <main class="page-content" id="dashboard-main">
-
-        <div class="container" id="my-events">
+        <div class="container-fluid" id="my-events">
             <div class="row" id="question">
                 {% for event in quiz %}
                 <div class="card myevent-card">
@@ -86,7 +86,7 @@
                         <h5 class="card-title">{{event.title}}</h5>
                         <p class="card-text">{{event.description}}</p>
                         {% with quiz_id=event.quiz_id %}
-                        {% if event.is_live == False %}
+                        {% if event.is_live != True %}
                         <a href="#" class="btn btn-block add-question"
                             id="{{event.quiz_id}}"
                             onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
@@ -106,25 +106,23 @@
         </div>
         <div class="container" id="live-events" style="display: none;">
             <div class="row">
-                {% for event in live %}
-                <div class="col-md-4 col-sm-6 col-lg-4">
-                    <div class="card" style="width: 20rem;">
-                        <div class="card-header">
-                            {{event.title}}
-                        </div>
-                        <div class="card-body">
-
-                            <h4 class="card-title">{{event.owner.username}}</h4>
-                            <p class="card-text">{{event.description}}</p>
-                            {% if event.is_live == True %}
-                            <a href="{%url 'event' id=event.quiz_id%}"
-                                class="btn btn-primary"
-                                id="{{event.quiz_id}}">{{event.quiz_id}}</a>
-                            {% else %}
-                            <a href="#">Ended</a>
-                            {% endif %}
-
-                        </div>
+                {% for event in quiz %}
+                <div class="card otherevent-card">
+                    <div class="card-img-block text-center">
+                        <img src="https://source.unsplash.com/200x200/?brainstorm,abstract,business"
+                            id="card-image"> </div>
+                    <div class="card-body pt-0" id="card-event">
+                        <h5 class="card-title">{{event.title}}</h5>
+                        <p></p>
+                        <p class="card-text">{{event.owner.username}}</p>
+                        <p class="card-text">{{event.description}}</p>
+                        {% if event.is_live == True %}
+                        <a href="{%url 'event' id=event.quiz_id%}"
+                            class="btn btn-block add-question pb-2"
+                            id="{{event.quiz_id}}">{{event.quiz_id}}</a>
+                        {% else %}
+                        <a href="#" class="btn btn-block add-question">Ended</a>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
