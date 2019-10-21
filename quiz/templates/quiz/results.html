@@ -1,4 +1,44 @@
-<h1>Result</h1>
-{{ quiz.id }}
+{% extends 'base.html' %}
+{% load static %}
 
-{{ participants }}
+{% block style %}
+    <style>
+        body {
+            background-image: url({% static 'user/images/dashback.jpg' %});
+            background-size: cover;
+        }</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <br>
+        <h2 class="h2-responsive">{{ quiz.title }}</h2>
+        <table class="table table-bordered" style="background-color: #e0d3e4">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Total Qusetions</th>
+                <th scope="col">Attempts</th>
+                <th scope="col">Correct</th>
+                <th scope="col">Wrong</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{result.username}}</td>
+                <td>{{result.total_question}}</td>
+                <td>{{result.attempt}}</td>
+                <td>{{result.correct}}</td>
+                <td>{{ result.wrong }}</td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

@@ -12,22 +12,21 @@ class Quiz(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     is_live = models.BooleanField(default=False)
 
-    def check_answer(self, ques, user):
-        ques_type = Question.objects.values('ques_type__id').filter(pk=ques)
-        submissions = self.submission.values('sub_answer__choice_id').filter(ques=ques, user=user)
+    def check_answer(self, ques_id, user_id):
+        ques_type = Question.objects.values('ques_type__id').filter(pk=ques_id)[0]
+        ques_type = ques_type['ques_type__id']
+        submissions = self.submission.values('sub_answer__choice_id').filter(ques=ques_id, user=user_id)
         submitted_answer_ids = []
         for submission in submissions:
             submitted_answer_ids.append(submission['sub_answer__choice_id'])
-        # print(submitted_answer_ids)
         if submissions:
             if ques_type == 1:
                 return "No result for text question"
             elif ques_type == 2 or ques_type == 3 or ques_type == 4:
-                answers = ques.answers.values('answer__choice_id').all()
+                answers = Answer.objects.values('answer__choice_id').filter(ques=ques_id).all()
                 correct_answer_ids = []
                 for answer in answers:
                     correct_answer_ids.append(answer['answer__choice_id'])
-                # print(correct_answer_ids)
                 if correct_answer_ids == submitted_answer_ids:
                     return "Right"
                 else:
@@ -36,20 +35,24 @@ class Quiz(models.Model):
             return "Answer not sumbitted"
 
     def get_participants(self):
-        return list(AnswerSubmission.objects.values('user__id', 'user__username' ).filter(quiz=self).distinct())
+        return list(AnswerSubmission.objects.values('user__id', 'user__username', 'user__first_name').filter(quiz=self).distinct())
 
 
-    def get_score(self, user):
-        score = 0
+    def get_score(self, user_id):
+        correct = 0
+        wrong = 0
         questions = self.questions.values('ques_id').all()
         total_questions = questions.count()
-        attempt = AnswerSubmission.objects.values('ques').filter(quiz=self).distinct().count()
-        for ques_id in questions:
-            if self.check_answer(ques_id, user) == 'Right':
-                score += 1
-        return {'total_question':total_questions, 'attempt':attempt, 'correct':score}
+        attempt = AnswerSubmission.objects.values('ques').filter(quiz=self, user=user_id).distinct().count()
+        for ques in questions:
+            ques_id = ques['ques_id']
+            result = self.check_answer(ques_id, user_id)
+            if result == 'Right':
+                correct += 1
+            elif result == 'Wrong':
+                wrong += 1
 
-
+        return {'total_question':total_questions, 'attempt':attempt, 'correct':correct, 'wrong':wrong}
 
 class QuestionType(models.Model):
     name = models.CharField(max_length=30)

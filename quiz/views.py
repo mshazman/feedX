@@ -143,6 +143,14 @@ def quiz_result(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
     print(quiz)
     participants = quiz.get_participants()
-    return render(request, 'quiz/results.html', {'quiz': quiz, 'participants': participants})
+    results = []
+    for participant in participants:
+        participant_result = quiz.get_score(participant['user__id'])
+        participant_result['id'] = participant['user__id']
+        participant_result['name'] = participant['user__first_name']
+        participant_result['username'] = participant['user__username']
+        results.append(participant_result)
+
+    return render(request, 'quiz/results.html', {'quiz': quiz, 'results':results})
 
 
