@@ -114,6 +114,7 @@
         </div>
         <div class="container" id="live-events" style="display: none;">
             <div class="row">
+
                 {% for event in participation %}
                 <div class="card otherevent-card">
                     <div class="card-img-block text-center">
@@ -133,6 +134,7 @@
                             <p>It seems that you have already participated</p>
                         <a href="{% url 'result' quiz_id=event.live.quiz_id %}" class="btn btn-block add-question">Result</a>
                         {% endif %}
+
                     </div>
                 </div>
                 {% endfor %}
