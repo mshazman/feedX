@@ -7,6 +7,7 @@ from quiz.serializers import *
 from . models import *
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.pagination import PageNumberPagination
+from django.core.paginator import Paginator
 
 
 
@@ -143,13 +144,16 @@ def quiz_result(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
     print(quiz)
     participants = quiz.get_participants()
-    results = []
+    result_list = []
     for participant in participants:
         participant_result = quiz.get_score(participant['user__id'])
         participant_result['id'] = participant['user__id']
         participant_result['name'] = participant['user__first_name']
         participant_result['username'] = participant['user__username']
-        results.append(participant_result)
+        result_list.append(participant_result)
+    paginator = Paginator(result_list, 5)
+    page = request.GET.get('page')
+    results = paginator.get_page(page)
 
     return render(request, 'quiz/results.html', {'quiz': quiz, 'results':results})
 
