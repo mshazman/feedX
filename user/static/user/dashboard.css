@@ -355,9 +355,9 @@ body {
 /* dashboard card styles */
 
 .myevent-card {
-    margin-top: 20px;
     width: 20rem;
     height: 21.5rem;
+    margin-left: 1.5rem;
 }
 .myevent-card .btn {
     border-radius: 2px;
@@ -382,6 +382,9 @@ body {
     opacity: 0.8;
     filter:alpha(opacity=80);
 }
+.myevent-card .card-body{
+    margin-top: -4rem;
+}
 .myevent-card h5 {
     color: black;
     font-weight: 600;
@@ -390,10 +393,44 @@ body {
     font-size: 14px;
     font-weight: 300;
 }
-.myevent-card .btn-primary {
-    background-color: #4E5E30;
-    border-color: #4E5E30;
+/* other events card */
+.otherevent-card {
+    margin-top: 20px;
+    width: 20rem;
+    height: 23.5rem;
 }
+.otherevent-card .btn {
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 7px 20px;
+}
+.otherevent-card .card-img-block {
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+}
+.otherevent-card .card-img-block img {
+    width: 97%;
+    height: 80%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
+    transition:0.6s all ease
+}
+.otherevent-card .card-img-block img:hover {
+    opacity: 0.8;
+    filter:alpha(opacity=80);
+}
+.otherevent-card h5 {
+    color: black;
+    font-weight: 600;
+}
+.otherevent-card p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
 /* my question list styles */
 
 .panel{
@@ -454,4 +491,52 @@ body {
     border-radius: 2em !important;
     /* border-top-left-radius: 2em;
     border-bottom-right-radius: 2em; */
+}
+/* media query for small screen of dashboard */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+.myevent-card {
+    height: 21rem;
+    margin-bottom: 3rem;
+}
+.myevent-card .card-body{
+    margin-top: -2rem;
+}}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .myevent-card {
+        height: 21rem;
+        margin-bottom: 4rem;
+    }
+    .myevent-card .card-body{
+        margin-top: -2rem;
+    }
+}
+@media only screen and (max-width : 320px) {
+    .myevent-card {
+        height: 16rem;
+        margin-bottom: 3rem;
+    }
+    .myevent-card .card-body{
+        margin-top: -3.5rem!important;
+    }
+}
+/* for iphone 6,7,8 */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .myevent-card {
+        height: 20rem;
+        margin-bottom: 3rem;
+    }
+    .myevent-card .card-body{
+        margin-top: -3.5rem!important;
+    }
+}
+/* for iphone x */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    .myevent-card {
+        height: 19.5rem;
+        margin-bottom: 3rem;
+    }
+    .myevent-card .card-body{
+        margin-top: -3.5rem!important;
+    }
 }
