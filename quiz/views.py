@@ -1,37 +1,19 @@
 import json
-import os
 import secrets
 from django.shortcuts import render
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
 from django.http import HttpResponse, JsonResponse
-from quiz.forms import QuizForm
-from django.contrib.messages.views import SuccessMessageMixin
 from rest_framework import generics
 from quiz.serializers import *
 from . models import *
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.pagination import PageNumberPagination
-# Create your views here.
 
-class QuestionPaginator(PageNumberPagination):
+
+
+class QuestionPagination(PageNumberPagination):
     page_size = 1
     page_size_query_param = 'page'
     max_page_size = 1
-    
-
-class CreateQuizView(SuccessMessageMixin, CreateView):
-
-    form_class = QuizForm
-    template_name = 'quiz/create_quiz.html'
-    success_url = reverse_lazy('dashboard')
-    success_message = "Quiz Created"
-
-    def form_valid(self, form):
-       form.instance.owner = self.request.user
-       form.instance.quiz_id = form.generate_id()
-       return super().form_valid(form)
-
 
 
 class ListQuizView(generics.ListCreateAPIView):
@@ -42,7 +24,6 @@ class ListQuizView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(quiz_id = 'q' +secrets.token_hex(8))
 
-
 class DetailQuizView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
@@ -52,7 +33,8 @@ class ListQusetionView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     filterset_fields = ['quiz']
-    pagination_class = QuestionPaginator
+    pagination_class = QuestionPagination
+
 
 
 class DetailQuestionView(generics.RetrieveUpdateDestroyAPIView):
@@ -86,9 +68,6 @@ class DetailAnswerView(generics.RetrieveUpdateDestroyAPIView):
 class ListSubmissionView(generics.ListCreateAPIView):
     queryset = AnswerSubmission.objects.all()
     serializer_class = SubmissionSerializer
-
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
     filterset_fields = ['ques_id', 'user', 'quiz']
 
 
@@ -96,17 +75,20 @@ class DetailSubmissionView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AnswerSubmission.objects.all()
     serializer_class = SubmissionSerializer
 
+
 def generate_id(self):
         return JsonResponse({'id': str(secrets.token_hex(8))})
 
-def event(request,id=''):
-    quiz = Quiz.objects.get(quiz_id=id)
-    questions = quiz.question_set.all()
-    print(quiz.question_set.all())
-    context = {
-        'question':questions,
-    }
-    return render(request,'quiz/participate.html',context)
+
+# def event(request,id=''):
+#     quiz = Quiz.objects.get(quiz_id=id)
+#     questions = quiz.questions.all()
+#     # print(questions.choices.all())
+#     context = {
+#         'question':questions,
+#     }
+#     return render(request,'quiz/participate.html',context)
+
 
 @csrf_exempt
 def new_quiz(request):
@@ -117,12 +99,14 @@ def new_quiz(request):
     return json.dumps(request.body)
 
 
+
 def take_quiz(request, id):
     quiz = Quiz.objects.get(quiz_id=id)
     context ={
         'quiz':quiz
     }
     return render(request,'quiz/participate.html', context)
+
 
 @csrf_exempt
 def answerForm(request):
@@ -132,6 +116,7 @@ def answerForm(request):
             data = json.loads(request.body)#jsonresponser of the submitted form
             print(data['answer'])
             return HttpResponse(request.body)
+
 
 @csrf_exempt
 def quiz_template_render(request, filename):
@@ -150,3 +135,20 @@ def quiz_template_render(request, filename):
         context = {}
 
     return render(request,f'quiz/{filename}',context)
+
+
+def quiz_result(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    print(quiz)
+    participants = quiz.get_participants()
+    results = []
+    for participant in participants:
+        participant_result = quiz.get_score(participant['user__id'])
+        participant_result['id'] = participant['user__id']
+        participant_result['name'] = participant['user__first_name']
+        participant_result['username'] = participant['user__username']
+        results.append(participant_result)
+
+    return render(request, 'quiz/results.html', {'quiz': quiz, 'results':results})
+
+

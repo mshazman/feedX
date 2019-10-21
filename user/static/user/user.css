@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald%7CRoboto+Mono&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Kalam&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap");
 
 .registration-form {
   background: white;
@@ -12,18 +12,17 @@
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
-#testimonial {
-  margin-top: 3rem;
-}
-
 .register-text {
   color: white;
   font-weight: bolder;
 }
 
+#testimonial-card{
+  margin-top: 4rem;
+}
 /* navbar styles */
 .navbar-nav a {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   text-transform: capitalize;
   font-size: 20px;
   /* font-weight: bold; */
@@ -97,28 +96,49 @@
 }
 
 .event-create {
-    border-radius: 2em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-weight: bold;
-    font-family: 'Noto Sans KR', sans-serif;
-    letter-spacing: 2.1px;
-    color: white;
-    margin-left: 10rem;
-    border-bottom: solid 2px skyblue;
-    border-radius: 0.5em;
-    transition: 0.4s all ease;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Noto Sans KR", sans-serif;
+  letter-spacing: 2.1px;
+  color: white;
+  margin-left: 10rem;
+  border-bottom: solid 2px skyblue;
+  border-radius: 0.5em;
+  transition: 0.4s all ease;
 }
-.event-create:hover{
-    border-bottom: 2px solid cyan;
-    padding: 0.5em 1em;
-    color: white;
-    border-radius: 2em;
-    background: #cb5fbd;
-    cursor: pointer
+.event-create:hover {
+  border-bottom: 2px solid cyan;
+  padding: 0.5em 1em;
+  color: white;
+  border-radius: 2em;
+  background: #cb5fbd;
+  cursor: pointer;
 }
+
+/* media queries */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+  .slider_area .single_slider .illastrator_png img {
+    width: 18rem;
+    height: 18rem;
+  }
+  .slider_area .single_slider .slider_info h3{
+    font-size: 1.5rem;
+  }
+  .business{
+    margin-top: 0!important;
+  }
+  .event-create{
+    margin-left: 4.5rem;
+    border-bottom: none;
+  }
+  #registration-hide{
+    display:none
+  }
+}
+/* }
 @media (max-width: 1200px) {
-  /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_slider.scss */
   .slider_area .single_slider .slider_info {
     text-align: center;
   }
@@ -138,7 +158,6 @@
 }
 
 @media (max-width: 900px) {
-  /* line 29, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_slider.scss */
   .slider_area .single_slider .slider_info {
     text-align: center;
   }
@@ -154,7 +173,7 @@
   .event-create {
     margin-left: 0rem;
   }
-}
+} */
 
 @media only screen and (max-width: 1200px) {
   .navbar-toggler {

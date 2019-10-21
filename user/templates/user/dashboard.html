@@ -21,10 +21,13 @@
             </div>
             <div class="sidebar-header">
                 <div class="user-pic">
-                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
+                    <img class="img-responsive img-rounded"
+                        src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                        alt="User picture">
                 </div>
                 <div class="user-info">
-                    <span class="user-name" style="text-transform: uppercase;">{{user.username}}
+                    <span class="user-name"
+                        style="text-transform: uppercase;">{{user.username}}
                     </span>
                     <span class="user-role">Quiz Creator</span>
                 </div>
@@ -36,7 +39,9 @@
                         <span>General</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#" onclick="createQuiz('create_quiz.html')" id="dashboard-links"> <i <i class="fa fa-question-circle"></i><span>Create
+                        <a href="#" onclick="createQuiz('create_quiz.html')"
+                            id="dashboard-links"> <i <i
+                                class="fa fa-question-circle"></i><span>Create
                                 Quiz</span>
                         </a>
                     </li>
@@ -53,8 +58,9 @@
                         </a>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#" id="dashboard-links" onclick="liveEvents('live_events.html')">
-                            <i class="fa fa-free-code-camp" aria-hidden="true"></i>
+                        <a href="#" id="dashboard-links" onclick="liveEvents()">
+                            <i class="fa fa-free-code-camp"
+                                aria-hidden="true"></i>
                             <span>Live Events</span>
                         </a>
                     </li>
@@ -65,7 +71,8 @@
         <div class="sidebar-footer">
             <a href="#">
                 <i class="fa fa-bell"></i>
-                <span class="badge badge-pill badge-warning notification">3</span>
+                <span
+                    class="badge badge-pill badge-warning notification">3</span>
             </a>
             <a href="{% url 'logout' %}">
                 <i class="fa fa-power-off"></i>
@@ -74,22 +81,32 @@
     </nav>
     <!-- sidebar-wrapper  -->
     <main class="page-content" id="dashboard-main">
-
-        <div class="container" id="my-events">
-            <div class="row">
+        <div class="container-fluid" id="my-events">
+            <div class="row" id="question">
                 {% for event in quiz %}
-                <div class="col-md-4 col-sm-12 col-lg-4">
-                    <div class="card" style="width: 20rem;">
-                        <div class="card-header">
-                            {{event.title}}
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">{{event.owner.username}}</h4>
-                            <p class="card-text">{{event.description}}</p>
-                            {% with quiz_id=event.quiz_id %}
-                            <a href="#" class="btn add-question" id="{{event.quiz_id}}" onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
-                                questions</a> {% endwith %}
-                        </div>
+                <div class="card myevent-card">
+                    <div class="card-img-block text-center">
+                        <img src="https://source.unsplash.com/200x200/?brainstorm,abstract,business"
+                            id="card-image"> </div>
+                    <div class="card-body pt-0" style="margin-top:-4rem;">
+                        <h5 class="card-title">{{event.title}}</h5>
+                        <p class="card-text">{{event.description}}</p>
+                        {% with quiz_id=event.quiz_id %}
+                        {% if event.is_live != True %}
+                        <a href="#" class="btn btn-block add-question"
+                            id="{{event.quiz_id}}"
+                            onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
+                            questions</a>
+                        {% else %}
+                        <a href="#"
+                            onclick="showDetails('{{quiz_id}}','show_question.html')"
+                            class="btn btn-block add-question">Show
+                            Details</a>
+                            <a href= "{% url 'result' quiz_id=quiz_id %}"
+                            class="btn btn-block add-question">Result</a>
+                        {% endif %}
+                        {% endwith %}
+
                     </div>
                 </div>
                 {% endfor %}
@@ -97,19 +114,27 @@
         </div>
         <div class="container" id="live-events" style="display: none;">
             <div class="row">
-                {% for event in live %}
-                <div class="col-md-4 col-sm-6 col-lg-4">
-                    <div class="card" style="width: 20rem;">
-                        <div class="card-header">
-                            {{event.title}}
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">{{event.owner.username}}</h4>
-                            <p class="card-text">{{event.description}}</p>
 
-                            {% if event.quiz_id != '' %}
-                            <a href="{%url 'event' id=event.quiz_id%}" class="btn btn-primary" id="{{event.quiz_id}}">{{event.quiz_id}}</a> {% endif %}
-                        </div>
+                {% for event in participation %}
+                <div class="card otherevent-card">
+                    <div class="card-img-block text-center">
+                        <img src="https://source.unsplash.com/200x200/?brainstorm,abstract,business"
+                            id="card-image"> </div>
+                    <div class="card-body pt-0" id="card-event">
+                        <h5 class="card-title">{{event.live.title}}</h5>
+                        <p></p>
+                        <p class="card-text">{{event.live.owner.username}}</p>
+                        <p class="card-text">{{event.live.description}}</p>
+                        {% if event.status == False %}
+                        <a href="{%url 'event' id=event.live.quiz_id%}"
+                            class="btn btn-block add-question pb-2"
+                            id="{{event.live.quiz_id}}">Participate</a>
+                        {% else %}
+                        {{participation.status}}
+                            <p>It seems that you have already participated</p>
+                        <a href="{% url 'result' quiz_id=event.live.quiz_id %}" class="btn btn-block add-question">Result</a>
+                        {% endif %}
+
                     </div>
                 </div>
                 {% endfor %}
@@ -122,4 +147,5 @@
 {%endblock%} {% block scripts %}
 <script src="{% static 'user/dashboard.js' %}" type="text/javascript">
 </script>
+<script src="anime.min.js"></script>
 {% endblock %}
