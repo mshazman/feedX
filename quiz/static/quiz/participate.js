@@ -1,28 +1,33 @@
 let host = window.location.host;
+let questions = null;
 
-const startQuiz = quiz_id => {
+function* getNextQuestions(questions) {
+    for (let i = 0; i < questions.length; i++) {
+        yield questions[i]
+    }
+}
+
+const loadQuiz = (quiz_id) => {
+    document.getElementById("quiz-start").disabled = true;
+    fetch(`http://${host}/quiz/api/quiz/${quiz_id}`).then(res => res.json()).then(data => {
+        questions = getNextQuestions(data['questions']);
+        document.getElementById("quiz-start").disabled = false;
+    });
+}
+
+const nextQuestion = () => {
     event.preventDefault();
-    url = `http://${host}/quiz/api/questions?quiz=${quiz_id}`
-    nextQuestion(url);
-
-};
-
-const nextQuestion = url => {
-    console.log(url)
-    event.preventDefault();
-    if (url != 'None') {
-        fetch(url).then(res => res.json()).then(data => {
-            fetch(`http://${host}/quiz/template/render/question.html`, {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json; charset=UTF-8",
-                    "Accept": "application/json",
-                },
-            }).then(res => res.text()).then(result => showQuestion(result));
-
-        })
-
+    question = questions.next();
+    if (question.done == false) {
+        data = question.value;
+        fetch(`http://${host}/quiz/template/render/question.html`, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8",
+                "Accept": "application/json",
+            },
+        }).then(res => res.text()).then(result => showQuestion(result));
     } else {
         fetch(`http://${host}/quiz/template/render/thanks.html`).then(res => res.text()).then(result => showQuestion(result));
     }

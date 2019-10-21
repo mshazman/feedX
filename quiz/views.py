@@ -139,12 +139,10 @@ def quiz_template_render(request, filename):
     if request.method=='POST':
         if request.body:
             data = json.loads(request.body)
-            next_page = data['next']
-            question = data['results'][0]
-            choices = data['results'][0]['choices'];
+            question = data
+            choices = data['choices']
 
             context = {
-                'next': next_page,
                 'question': question,
                 'choices': choices,
             }
