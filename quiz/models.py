@@ -44,14 +44,14 @@ class Question(models.Model):
     quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
     ques_type = models.ForeignKey(QuestionType,related_name='questions', on_delete=models.CASCADE)
     ques_id = models.CharField(max_length=50,primary_key=True,null=False)
-    ques_text = models.CharField(max_length=30)
+    ques_text = models.CharField(max_length=150)
     timestamp = models.DateTimeField(default=timezone.now)
 
 
 class QuestionChoice(models.Model):
     ques = models.ForeignKey(Question,related_name='choices', on_delete=models.CASCADE)
     choice_id = models.CharField(max_length=50, primary_key=True, null=False)
-    choice_text = models.CharField(max_length=30)
+    choice_text = models.CharField(max_length=50)
 
 
 class Answer(models.Model):
