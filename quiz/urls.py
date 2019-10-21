@@ -18,6 +18,7 @@ urlpatterns = [
     path('answer/',quiz_views.answerForm,name='answer'),
     path('new/',quiz_views.new_quiz,name="new-quiz"),
     # path('take/quiz/<str:id>',quiz_views.take_quiz, name="take-quiz"),
-    path('template/render/<str:filename>',quiz_views.quiz_template_render, name='template-render')
+    path('template/render/<str:filename>',quiz_views.quiz_template_render, name='template-render'),
+    path('result/<str:quiz_id>', quiz_views.quiz_result)
 
 ]
