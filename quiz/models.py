@@ -13,27 +13,42 @@ class Quiz(models.Model):
     is_live = models.BooleanField(default=False)
 
     def check_answer(self, ques, user):
-        ques_type = ques.ques_type.id
-        submissions = self.submission.filter(ques=ques, user=user)
+        ques_type = Question.objects.values('ques_type__id').filter(pk=ques)
+        submissions = self.submission.values('sub_answer__choice_id').filter(ques=ques, user=user)
         submitted_answer_ids = []
         for submission in submissions:
-            submitted_answer_ids.append(submission.sub_answer.choice_id)
-
+            submitted_answer_ids.append(submission['sub_answer__choice_id'])
+        # print(submitted_answer_ids)
         if submissions:
             if ques_type == 1:
                 return "No result for text question"
             elif ques_type == 2 or ques_type == 3 or ques_type == 4:
-                answers = ques.answers.all()
+                answers = ques.answers.values('answer__choice_id').all()
                 correct_answer_ids = []
                 for answer in answers:
-                    correct_answer_ids.append(answer.answer.choice_id)
-
+                    correct_answer_ids.append(answer['answer__choice_id'])
+                # print(correct_answer_ids)
                 if correct_answer_ids == submitted_answer_ids:
                     return "Right"
                 else:
                     return "Wrong"
         else:
             return "Answer not sumbitted"
+
+    def get_participants(self):
+        return list(AnswerSubmission.objects.values('user__id', 'user__username' ).filter(quiz=self).distinct())
+
+
+    def get_score(self, user):
+        score = 0
+        questions = self.questions.values('ques_id').all()
+        total_questions = questions.count()
+        attempt = AnswerSubmission.objects.values('ques').filter(quiz=self).distinct().count()
+        for ques_id in questions:
+            if self.check_answer(ques_id, user) == 'Right':
+                score += 1
+        return {'total_question':total_questions, 'attempt':attempt, 'correct':score}
+
 
 
 class QuestionType(models.Model):

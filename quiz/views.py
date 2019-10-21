@@ -138,3 +138,11 @@ def quiz_template_render(request, filename):
 
     return render(request,f'quiz/{filename}',context)
 
+
+def quiz_result(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    print(quiz)
+    participants = quiz.get_participants()
+    return render(request, 'quiz/results.html', {'quiz': quiz, 'participants': participants})
+
+
