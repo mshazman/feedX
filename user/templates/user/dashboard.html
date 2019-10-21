@@ -6,8 +6,7 @@
         background-size: cover;
     }
 </style>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <div class="page-wrapper chiller-theme toggled" id="dashboard-content">
     <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
@@ -22,13 +21,10 @@
             </div>
             <div class="sidebar-header">
                 <div class="user-pic">
-                    <img class="img-responsive img-rounded"
-                        src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-                        alt="User picture">
+                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
                 </div>
                 <div class="user-info">
-                    <span class="user-name"
-                        style="text-transform: uppercase;">{{user.username}}
+                    <span class="user-name" style="text-transform: uppercase;">{{user.username}}
                     </span>
                     <span class="user-role">Quiz Creator</span>
                 </div>
@@ -40,9 +36,7 @@
                         <span>General</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#" onclick="createQuiz('create_quiz.html')"
-                            id="dashboard-links"> <i <i
-                                class="fa fa-question-circle"></i><span>Create
+                        <a href="#" onclick="createQuiz('create_quiz.html')" id="dashboard-links"> <i <i class="fa fa-question-circle"></i><span>Create
                                 Quiz</span>
                         </a>
                     </li>
@@ -59,10 +53,8 @@
                         </a>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="#" id="dashboard-links"
-                            onclick="liveEvents('live_events.html')">
-                            <i class="fa fa-free-code-camp"
-                                aria-hidden="true"></i>
+                        <a href="#" id="dashboard-links" onclick="liveEvents('live_events.html')">
+                            <i class="fa fa-free-code-camp" aria-hidden="true"></i>
                             <span>Live Events</span>
                         </a>
                     </li>
@@ -73,8 +65,7 @@
         <div class="sidebar-footer">
             <a href="#">
                 <i class="fa fa-bell"></i>
-                <span
-                    class="badge badge-pill badge-warning notification">3</span>
+                <span class="badge badge-pill badge-warning notification">3</span>
             </a>
             <a href="{% url 'logout' %}">
                 <i class="fa fa-power-off"></i>
@@ -83,10 +74,7 @@
     </nav>
     <!-- sidebar-wrapper  -->
     <main class="page-content" id="dashboard-main">
-        <!-- <div class="text-center text-success " id="hh">
-            <h2>Events</h2>
-        </div>
-        <div id="quiz"></div> -->
+
         <div class="container" id="my-events">
             <div class="row" id="question">
                 {% for event in quiz %}
@@ -98,7 +86,7 @@
                         <h5 class="card-title">{{event.title}}</h5>
                         <p class="card-text">{{event.description}}</p>
                         {% with quiz_id=event.quiz_id %}
-                        {% if event.is_live == 'true'%}
+                        {% if event.is_live == False %}
                         <a href="#" class="btn btn-block add-question"
                             id="{{event.quiz_id}}"
                             onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
@@ -110,6 +98,7 @@
                             Details</a>
                         {% endif %}
                         {% endwith %}
+
                     </div>
                 </div>
                 {% endfor %}
@@ -124,10 +113,7 @@
                             {{event.title}}
                         </div>
                         <div class="card-body">
-                            <!-- <img class="card-img-top"
-                                src='../../static/user/images/edu_ilastration.png'
-                                alt="Card image cap"
-                                style="height: 10em;width: 10em;"> -->
+
                             <h4 class="card-title">{{event.owner.username}}</h4>
                             <p class="card-text">{{event.description}}</p>
                             {% if event.is_live == True %}
@@ -137,19 +123,18 @@
                             {% else %}
                             <a href="#">Ended</a>
                             {% endif %}
+
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
-        {% block dashboard %}
-        {% endblock %}
+        {% block dashboard %} {% endblock %}
     </main>
     <!-- page-content" -->
 </div>
-{%endblock%}
-{% block scripts %}
+{%endblock%} {% block scripts %}
 <script src="{% static 'user/dashboard.js' %}" type="text/javascript">
 </script>
 <script src="anime.min.js"></script>

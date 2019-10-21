@@ -30,6 +30,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = AnswerSubmission
         fields = ['user', 'ques', 'sub_answer', 'text_answer', 'is_right', 'quiz']
