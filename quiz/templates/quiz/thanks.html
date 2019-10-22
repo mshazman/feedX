@@ -1,1 +1,8 @@
-<h1>THANKS YOU.</h1>
+{% load static %}
+
+<div class="container-fuild offset-md-1 col-md-10 offset-sm-2 col-sm-8">
+    <img src="{% static 'quiz/thanksimage.png' %}" alt="" class="col-12 mt-10">
+    <div class="col-12">
+        <a class="btn btn-info col-4 offset-4" style="text-decoration: none" href="{% url 'dashboard' %}"> Go Home </a>
+    </div>
+</div>
