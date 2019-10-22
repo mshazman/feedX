@@ -110,7 +110,7 @@ const choiceSubmission = (quiz_id, option_and_answer) => {
     if (i == choices.length - 1) {
       fetch(`http://${host}/quiz/api/choices/`, {
         method: "POST",
-        body: JSON.stringify(question),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
           Accept: "application/json"

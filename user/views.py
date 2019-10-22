@@ -1,7 +1,8 @@
 import os
-from django.shortcuts import render
-from .forms import UserRegistrationForm, UserLoginForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import render, redirect
+from .forms import UserRegistrationForm, UserLoginForm, UserPasswordResetForm, UserSetNewPassword
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
@@ -9,6 +10,17 @@ from quiz.models import Quiz
 from django.http import JsonResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from scripts import git_pull
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+def email(request):
+    subject = 'Thank you for registering to our site'
+    message = ' it  means a world to us '
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['pshubham380@gmail.com',]
+    send_mail( subject, message, email_from, recipient_list )
+    return redirect('dashboard')
 
 
 @staff_member_required
@@ -32,6 +44,16 @@ class UserLoginView(LoginView):
     authentication_form = UserLoginForm
     redirect_authenticated_user = True
 
+class UserPasswordResetView(PasswordResetView):
+    form_class = UserPasswordResetForm
+    template_name = 'user/password_reset.html'
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'user/password_reset_done.html'
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = SetPasswordForm
+    template_name = 'user/password_reset_confirm.html'
 
 class UserLogoutView(LogoutView):
     next_page = '/'
