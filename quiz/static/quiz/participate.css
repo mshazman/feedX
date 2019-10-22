@@ -82,6 +82,14 @@
     transition: .5s;
 }
 
+.text-area {
+    background: none;
+    height: 30vh;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
 .input-box {
     margin-top: .5rem!important;
     margin-left: 1rem;
