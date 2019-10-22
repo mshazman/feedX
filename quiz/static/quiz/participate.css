@@ -83,7 +83,7 @@
 }
 
 .input-box {
-    margin-top: .5rem!important;
+    margin-top: .5rem !important;
     margin-left: 1rem;
     background: whitesmoke;
     padding-top: .3rem;
@@ -111,7 +111,7 @@
 }
 
 .mt-2 {
-    margin-top: .5rem!important;
+    margin-top: .5rem !important;
     padding-left: .5rem;
     padding-top: .5rem;
     background: rgb(245, 245, 245, .5);
@@ -134,7 +134,7 @@ input[type="radio"] {
 
 /*Check box*/
 
-input[type="checkbox"]+.label-text:before {
+input[type="checkbox"] + .label-text:before {
     content: "\f0c8";
     font-family: "Font Awesome 5 Free";
     speak: none;
@@ -148,18 +148,18 @@ input[type="checkbox"]+.label-text:before {
     margin-right: 5px;
 }
 
-input[type="checkbox"]:checked+.label-text:before {
+input[type="checkbox"]:checked + .label-text:before {
     content: "\f14a";
     color: #2980b9;
     animation: effect 250ms ease-in;
     font-weight: 900;
 }
 
-input[type="checkbox"]:disabled+.label-text {
+input[type="checkbox"]:disabled + .label-text {
     color: #aaa;
 }
 
-input[type="checkbox"]:disabled+.label-text:before {
+input[type="checkbox"]:disabled + .label-text:before {
     content: "\f0c8";
     color: #ccc;
 }
@@ -167,7 +167,7 @@ input[type="checkbox"]:disabled+.label-text:before {
 
 /*Radio box*/
 
-input[type="radio"]+.label-text:before {
+input[type="radio"] + .label-text:before {
     content: "\f111";
     font-family: "Font Awesome 5 Free";
     speak: none;
@@ -181,17 +181,17 @@ input[type="radio"]+.label-text:before {
     margin-right: 5px;
 }
 
-input[type="radio"]:checked+.label-text:before {
+input[type="radio"]:checked + .label-text:before {
     content: "\f192";
     color: #8e44ad;
     animation: effect 250ms ease-in;
 }
 
-input[type="radio"]:disabled+.label-text {
+input[type="radio"]:disabled + .label-text {
     color: #aaa;
 }
 
-input[type="radio"]:disabled+.label-text:before {
+input[type="radio"]:disabled + .label-text:before {
     content: "\f111";
     color: #ccc;
 }

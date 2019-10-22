@@ -76,6 +76,7 @@ const submitQuestion = () => {
     ques_text: data["question-Text"],
     quiz: data["quiz-id"]
   };
+  addQuestion(data["quiz-id"], "add_question.html");
   question_id = data["question-id"];
   if (option.length > 0 && option_text.length > 0) {
     option_and_answer = getChoiceAndAnswer(question_id, option, option_text);
@@ -90,7 +91,10 @@ const submitQuestion = () => {
     }
   }).then(res => {
     if (res.ok) {
-      choiceSubmission(data["quiz-id"], option_and_answer);
+      if(data["question-type"]!=1){
+         choiceSubmission(data["quiz-id"], option_and_answer);
+      }
+
     }
   });
 };
@@ -110,7 +114,7 @@ const choiceSubmission = (quiz_id, option_and_answer) => {
     if (i == choices.length - 1) {
       fetch(`http://${host}/quiz/api/choices/`, {
         method: "POST",
-        body: JSON.stringify(question),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
           Accept: "application/json"
@@ -151,7 +155,7 @@ const correctAnswerSubmission = (quiz_id, answers) => {
       }
     });
   });
-  addQuestion(quiz_id, "add_question.html");
+  // addQuestion(quiz_id, "add_question.html");
 };
 
 const getChoiceAndAnswer = (question_id, option, option_text) => {
