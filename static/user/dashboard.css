@@ -262,6 +262,7 @@ body {
 }
 /* question type button */
 .type-ques-btn, .add-question{
+    margin-top: -1.5rem;;
     background-color: #4c9cdc;
     padding: 0.375rem;
     color: #dee2e6;
@@ -283,6 +284,7 @@ body {
 }
 /* dashboard card styles */
 .myevent-card {
+    margin-top:2rem;
     width: 20rem;
     height: 21.5rem;
     margin-left: 1.5rem;
@@ -322,22 +324,20 @@ body {
     font-weight: 300;
 }
 /* other events card */
-
 #live-events{
     margin-left: -2rem;
 }
 .otherevent-card {
     margin-bottom: 3rem;
     width: 20rem;
-    height: 23.5rem;
+    height: 21rem;
     margin-left: 1.5rem;
-
 }
-
 .otherevent-card .card-body{
     margin-top: -4rem;
 }
 .otherevent-card .btn {
+    margin-top: 1rem;
     border-radius: 2px;
     text-transform: uppercase;
     font-size: 12px;
@@ -368,7 +368,6 @@ body {
     font-size: 14px;
     font-weight: 300;
 }
-
 /* my question list styles */
 .panel{
     background: #DAE2F8;
@@ -436,7 +435,6 @@ body {
 .myevent-card .card-body{
     margin-top: -2rem;
 }}
-
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     .myevent-card {
         height: 21rem;
