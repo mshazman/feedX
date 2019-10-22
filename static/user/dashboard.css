@@ -410,7 +410,7 @@ body {
     width: 100%;
 }
 .bb{
-    background: url('/images/rsz_vector-creative-brainstorm-concept-business-idea-innovation-solution-creative-design-flat-design-90201820\(1\).jpg');
+    background: url('../../static/user/images/create_quiz.jpg');
     background-size: cover;
 }
 .type-ques-btn, .add-quiz{
