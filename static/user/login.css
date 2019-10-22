@@ -17,7 +17,7 @@
 }
 
 .bg-image {
-    background-image: url("../../static/user/images/login-background.jpg");
+    background-image: url("ground.jpg");
     background-size: cover;
     background-position: center;
 }
