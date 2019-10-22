@@ -5,6 +5,10 @@
         background-image: url('../../static/user/images/dashback.jpg');
         background-size: cover;
     }
+
+
+}
+
 </style>
 {% endblock %} {% block content %}
 <div class="page-wrapper chiller-theme toggled" id="dashboard-content">
@@ -40,7 +44,7 @@
                     </li>
                     <li class="sidebar-dropdown">
                         <a href="#" onclick="createQuiz('create_quiz.html')"
-                            id="dashboard-links"> <i <i
+                            id="dashboard-links">  <i
                                 class="fa fa-question-circle"></i><span>Create
                                 Quiz</span>
                         </a>
@@ -98,12 +102,16 @@
                             onclick="addQuestion('{{quiz_id}}','add_question.html')">Add
                             questions</a>
                         {% else %}
+                            <div class="row">
+                            <div class="col-md-6">
                         <a href="#"
                             onclick="showDetails('{{quiz_id}}','show_question.html')"
-                            class="btn btn-block add-question">Show
-                            Details</a>
+                            class="btn btn-block add-question dashboard-card-btn-sm">
+                            Details</a></div>
+                                <div class="col-md-6">
                             <a href= "{% url 'result' quiz_id=quiz_id %}"
-                            class="btn btn-block add-question">Result</a>
+                            class="btn btn-block add-question dashboard-card-btn-sm">Result</a>
+                            </div></div>
                         {% endif %}
                         {% endwith %}
 
