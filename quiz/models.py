@@ -4,11 +4,10 @@ from django.utils import timezone
 
 
 class Quiz(models.Model):
-
-    quiz_id = models.CharField(max_length=50,primary_key=True,null=False)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
-    title = models.CharField(max_length=50,null=False)
-    description = models.TextField(max_length=200,blank=True)
+    quiz_id = models.CharField(max_length=50, primary_key=True, null=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    title = models.CharField(max_length=50, null=False)
+    description = models.TextField(max_length=200, blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
     is_live = models.BooleanField(default=False)
 
@@ -42,8 +41,8 @@ class Quiz(models.Model):
             return "Answer not sumbitted"
 
     def get_participants(self):
-        return list(AnswerSubmission.objects.values('user__id', 'user__username', 'user__first_name').filter(quiz=self).distinct())
-
+        return list(AnswerSubmission.objects.values('user__id', 'user__username', 'user__first_name').filter(
+            quiz=self).distinct())
 
     def get_score(self, user_id):
         correct = 0
@@ -59,7 +58,8 @@ class Quiz(models.Model):
             elif result == 'Wrong':
                 wrong += 1
 
-        return {'total_question':total_questions, 'attempt':attempt, 'correct':correct, 'wrong':wrong}
+        return {'total_question': total_questions, 'attempt': attempt, 'correct': correct, 'wrong': wrong}
+
 
 class QuestionType(models.Model):
     name = models.CharField(max_length=30)
@@ -67,14 +67,14 @@ class QuestionType(models.Model):
 
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
-    ques_type = models.ForeignKey(QuestionType,related_name='questions', on_delete=models.CASCADE)
-    ques_id = models.CharField(max_length=50,primary_key=True,null=False)
+    ques_type = models.ForeignKey(QuestionType, related_name='questions', on_delete=models.CASCADE)
+    ques_id = models.CharField(max_length=50, primary_key=True, null=False)
     ques_text = models.CharField(max_length=150)
     timestamp = models.DateTimeField(default=timezone.now)
 
 
 class QuestionChoice(models.Model):
-    ques = models.ForeignKey(Question,related_name='choices', on_delete=models.CASCADE)
+    ques = models.ForeignKey(Question, related_name='choices', on_delete=models.CASCADE)
     choice_id = models.CharField(max_length=50, primary_key=True, null=False)
     choice_text = models.CharField(max_length=50)
 
@@ -85,12 +85,9 @@ class Answer(models.Model):
 
 
 class AnswerSubmission(models.Model):
-    user = models.ForeignKey(User,related_name='submission', on_delete=models.CASCADE)
-    ques = models.ForeignKey(Question,related_name='submission', on_delete=models.CASCADE)
-    quiz = models.ForeignKey(Quiz,related_name='submission', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='submission', on_delete=models.CASCADE)
+    ques = models.ForeignKey(Question, related_name='submission', on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, related_name='submission', on_delete=models.CASCADE)
     sub_answer = models.ForeignKey(QuestionChoice, related_name='submission', on_delete=models.CASCADE, null=True)
     text_answer = models.CharField(max_length=150, null=True)
     is_right = models.BooleanField(null=True)
-
-
-

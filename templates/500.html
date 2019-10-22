@@ -246,42 +246,43 @@
 </head>
 
 <body>
-    <link
+<link
         href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400"
         rel="stylesheet">
 
-    <body class="loading">
-        <h1>500</h1>
-        <h2>Unexpected Error <b>:(</b></h2>
-        <div class="gears">
-            <div class="gear one">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <div class="gear two">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <div class="gear three">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-        </div>
-        <p>You can get back to&nbsp;</p><span><a
-                href="{%url 'home'%}">Home</a></span>
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script type="text/jsvascript">
+<body class="loading">
+<h1>500</h1>
+<h2>Unexpected Error <b>:(</b></h2>
+<div class="gears">
+    <div class="gear one">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="gear two">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="gear three">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div>
+<p>You can get back to&nbsp;</p><span><a
+        href="{% url 'home' %}">Home</a></span>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/jsvascript">
             $(function() {
                 setTimeout(function(){
                   $('body').removeClass('loading');
                 }, 1000);
               });
 
-        </script>
-    </body>
+
+</script>
+</body>
 </body>
 
 </html>

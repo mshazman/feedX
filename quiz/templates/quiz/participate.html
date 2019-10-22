@@ -19,7 +19,7 @@
                         <br>
                         <p class="card-text text-justify">{{quiz.description}}</p>
                         <br>
-                        <button class="btn btn-info col-md-12" id="quiz-start" onclick="startQuiz('{{quiz.quiz_id}}')"> Start Quiz</button>
+                        <button class="btn btn-info col-md-12" id="quiz-start" onclick="nextQuestion()" disabled> Start Quiz</button>
                         <br>
                         <br>
                     </div>
@@ -35,4 +35,7 @@
 
 {% endblock %} {% block scripts %}
 <script src="{% static 'quiz/participate.js' %}" type="text/javascript"></script>
+<script>
+    window.onload = loadQuiz('{{quiz.quiz_id}}')
+</script>
 {% endblock %}

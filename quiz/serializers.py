@@ -12,7 +12,6 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 
 class AnswerSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Answer
         fields = ['ques', 'answer']
@@ -25,12 +24,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['ques_type','ques_id', 'ques_text', 'timestamp', 'quiz', 'choices', 'answers']
+        fields = ['ques_type', 'ques_id', 'ques_text', 'timestamp', 'quiz', 'choices', 'answers']
         read_only_fields = ['timestamp']
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = AnswerSubmission
         fields = ['user', 'ques', 'sub_answer', 'text_answer', 'is_right', 'quiz']
@@ -45,6 +43,4 @@ class QuizSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ['title', 'owner', 'description', 'quiz_id', 'questions', 'submissions','is_live']
-
-
+        fields = ['title', 'owner', 'description', 'quiz_id', 'questions', 'submissions', 'is_live']
