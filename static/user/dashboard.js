@@ -91,10 +91,9 @@ const submitQuestion = () => {
     }
   }).then(res => {
     if (res.ok) {
-      if(data["question-type"]!=1){
-         choiceSubmission(data["quiz-id"], option_and_answer);
+      if (data["question-type"] != 1) {
+        choiceSubmission(data["quiz-id"], option_and_answer);
       }
-
     }
   });
 };
