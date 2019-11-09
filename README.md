@@ -1,5 +1,5 @@
 # QuizyDonut!
-## An online platform where you can create quiz to target your audience and if you want you can participate in other hosted events you can have fun!
+## An online platform where you can create quiz to target your audience and if you want you can participate in other hosted events you can have fun!!
 
 # Prequisites
 ## Technologies/Framework used
